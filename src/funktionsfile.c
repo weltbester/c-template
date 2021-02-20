@@ -34,5 +34,4 @@
 
 void greeting() {
   printf("Hello World!\n");
-}
-/* End of funktionsfile.c */
+} /* End of funktionsfile.c */
