@@ -13,6 +13,7 @@
 #ifndef GANYLIB_H_
 #define GANYLIB_H_
 
+
 // For periodToMinute()
 #define MINUTE  1
 #define HOUR    (MINUTE * 60)

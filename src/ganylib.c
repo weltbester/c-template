@@ -18,6 +18,8 @@
  *  Copyright (C) Apr. 2020: Georg Pohl, 70174 Stuttgart
  */
 
+#define _GNU_SOURCE	/* for getline(), Non-ANSI */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
