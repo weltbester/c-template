@@ -1,4 +1,3 @@
-
 /**
  * File: ganylib.h
  * ---------------
@@ -22,46 +21,30 @@
 #define YEAR    (WEEK * 52)
 
 /**
- * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
  *
- * Function: searchUnspecificString()
- * Usage: char *ptr = searchUnspecificString(char *, int, char *, char *, char *);
- * -------------------------------------------------------------------------------
- * This function opens a filestream from a given filename 'fn', reads
- * it  line by line until it reaches the search pattern(s). From this
- * line the term found at position 'offset' is returned; where offset 1
- * finds the first word, etc.
+ * Function: printIntVector
+ * Usage: printIntVector(int *vec)
+ * -------------------------------
+ * Prints values of an integral vector starting
+ * form index 0 to the end.
+ *
  */
 
-char *searchUnspecificString(char *fn, int offset, const char *p1, const char *p2, const char *p3);
-
+void printIntVector(const int  *vec, int n);
 
 /**
- * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
  *
- * Function: periodToMinute()
- * Usage: int minutes = periodToMinute(const char *periodUnit);
- * ------------------------------------------------------------
- * 'periodToMinute' takes time periods, like 'year(s)', 'week(s) etc. as
- * a string, reverse calculates it to the smallest unit and returns
- * 'minutes' as an integer. 
+ * Function: printDoubleVector
+ * Usage: printDoubleVector(int *vec)
+ * ----------------------------------
+ * Prints values of a double vector starting
+ * form index 0 to the end.
+ *
  */
 
-int periodToMinute(char *periodUnit);
-
-/**
- * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
- *
- * Function: uptime()
- * Usage: int days = uptime(const char *line);
- * -------------------------------------------
- * 'uptime' takes a string, extracts relevant information about
- * the years, weeks, days etc. a router is running and finally
- * calculates and returns the summa summarum in days for the relevant
- * router.
- */
-
-int uptime(const char *line);
+void printDoubleVector(const double  *vec, int n);
 
 /**
  * Copyright February 2021: Georg Pohl, 70174 Stuttgart, Germany
@@ -86,5 +69,44 @@ void dump_buffer(FILE *fp);
 
 void killNL(char *str);
 
+/**
+ * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ *
+ * Function: periodToMinute()
+ * Usage: int minutes = periodToMinute(const char *periodUnit);
+ * -------------------------------------------
+ * 'periodToMinute' takes time periods, like 'year(s)', 'week(s) etc. as
+ * a string, reverse calculates it to the smallest unit and returns
+ * 'minutes' as an integer. 
+ */
+
+int periodToMinute(char *periodUnit);
+
+/**
+ * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ *
+ * Function: uptime()
+ * Usage: int days = uptime(const char *line);
+ * -------------------------------------------
+ * 'uptime' takes a string, extracts relevant information about
+ * the years, weeks, days etc. a router is running and finally
+ * calculates and returns the summa summarum in days for the relevant
+ * router.
+ */
+
+int uptime(const char *line);
+
+/**
+ * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ *
+ * Function: searchPattern()
+ * Usage: char *ptr = searchPattern(char *, int, const char *, const char *, const char *);
+ * ----------------------------------------------------------------------------------------
+ * This function opens a filestream from a given filename 'fn', reads it  line by line until
+ * it reaches the search pattern(s). From this line the term found at position 'offset' is
+ * returned; where offset 1 finds the first word, etc.
+ */
+
+char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, const char *p3);
 
 #endif /* GANYLIB_H_ */
