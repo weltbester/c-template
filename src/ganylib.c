@@ -39,15 +39,15 @@
  */
 
 void printIntVector(const int  *vec, int n) {
-  putchar('[ ');
+  printf("[ ");
   for (int i = 0; i < n; ++i) {
     if (i == 0) {
-      printf("%d");
+      printf("%d", vec[i]);
     } else {
-      printf(", %d");
+      printf(", %d", vec[i]);
     }
   }
-  putchar(' ]');
+  printf(" ]\n");
 }
 
 /**
@@ -56,15 +56,15 @@ void printIntVector(const int  *vec, int n) {
  *  Nothing to declare.
  */
 void printDoubleVector(const double  *vec, int n) {
-  putchar('[ ');
+  printf("[ ");
   for (int i = 0; i < n; ++i) {
     if (i == 0) {
-      printf("%f");
+      printf("%g", vec[i]);
     } else {
-      printf(", %f");
+      printf(", %g", vec[i]);
     }
   }
-  putchar(' ]');
+  printf(" ]\n");
 }
 
 /*

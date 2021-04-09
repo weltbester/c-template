@@ -23,7 +23,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "funktionsfile.h"
+#include "ganylib.h"
 
 /* CONSTANTS */
  
@@ -34,7 +34,7 @@
 
 /* GLOBAL VARIABLES */
 
-int main(int argc, const char **argv) {
+int main(void) {
   /* !TODO: gpohl 2021-01-01
   Put code in here... */
   
