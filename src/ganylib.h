@@ -1,9 +1,7 @@
 /**
  * File: ganylib.h
  * ---------------
- * This file defines functions needed for the Ganymed Inventory System.
- * There's a seperate library file for the search patterns which are
- * defined as constants in the 'pattern' file.
+ * This file defines functions needed for everyday networking use.
  * 
  * Here, general information about the usage is provided. If you're
  * a programmer, have a look at the relevant implementation file for
@@ -12,7 +10,6 @@
 
 #ifndef GANYLIB_H_
 #define GANYLIB_H_
-
 
 // For periodToMinute()
 #define MINUTE  1
@@ -100,9 +97,9 @@ int uptime(const char *line);
 /**
  * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
  *
- * Function: searchPattern()
- * Usage: char *ptr = searchPattern(char *, int, const char *, const char *, const char *);
- * ----------------------------------------------------------------------------------------
+ * Function: unspecificSearch()
+ * Usage: char *ptr = unspecificSearch(char *, int, const char *, const char *, const char *)
+ * ------------------------------------------------------------------------------------------
  * This function opens a filestream from a given filename 'fn', reads it  line by line until
  * it reaches the search pattern(s). From this line the term found at position 'offset' is
  * returned; where offset 1 finds the first word, etc.
