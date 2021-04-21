@@ -8,7 +8,7 @@
  * more details.
  */
 
-#define _GNU_SOURCE	/* for getline(), Non-ANSI */
+#define _GNU_SOURCE	/* for getline(), NON-ANSI C */
 
 #ifndef GANYLIB_H_
 #define GANYLIB_H_
