@@ -33,7 +33,7 @@
 
 #include <stdio.h>
 
-void greeting();
+void greeting(void);
 
 #endif /* !_FUNKTIONSFILE_H */
 /* End of funktionsfile.h */
