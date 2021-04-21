@@ -8,6 +8,8 @@
  * more details.
  */
 
+#define _GNU_SOURCE	/* for getline(), Non-ANSI */
+
 #ifndef GANYLIB_H_
 #define GANYLIB_H_
 
