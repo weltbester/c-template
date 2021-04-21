@@ -28,7 +28,6 @@
  * form index 0 to the end.
  *
  */
-
 void printIntVector(const int  *vec, int n);
 
 /**
@@ -41,7 +40,6 @@ void printIntVector(const int  *vec, int n);
  * form index 0 to the end.
  *
  */
-
 void printDoubleVector(const double  *vec, int n);
 
 /**
@@ -53,7 +51,6 @@ void printDoubleVector(const double  *vec, int n);
  * If you want to empty an input buffer after reading input via 'scanf',
  * use this function.
  */
-
 void dump_buffer(FILE *fp);
 
 /**
@@ -64,7 +61,6 @@ void dump_buffer(FILE *fp);
  * ----------------------------------------------------------------------
  * Deletes unwanted newline character ('\n') from a string.
  */
-
 void killNL(char *str);
 
 /**
@@ -77,7 +73,6 @@ void killNL(char *str);
  * a string, reverse calculates it to the smallest unit and returns
  * 'minutes' as an integer. 
  */
-
 int periodToMinute(char *periodUnit);
 
 /**
@@ -91,7 +86,6 @@ int periodToMinute(char *periodUnit);
  * calculates and returns the summa summarum in days for the relevant
  * router.
  */
-
 int uptime(const char *line);
 
 /**
@@ -104,7 +98,6 @@ int uptime(const char *line);
  * it reaches the search pattern(s). From this line the term found at position 'offset' is
  * returned; where offset 1 finds the first word, etc.
  */
-
 char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, const char *p3);
 
 /**
@@ -135,9 +128,6 @@ string deleteNetMask(const string ipAddr);
  * incrLastOctett("192.168.1.19") returns "192.168.1.20"
  *
  */
-
 string incrLastOctett(const string ipAddr);
-
-
 
 #endif /* GANYLIB_H_ */
