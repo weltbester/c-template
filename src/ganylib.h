@@ -107,4 +107,37 @@ int uptime(const char *line);
 
 char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, const char *p3);
 
+/**
+ * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
+ *
+ * C++ Function: deleteNetMask
+ * Usage: string netAddr = deleteNetMask(const string)
+ * --------------------_------------------------------
+ * Deletes the Postfix of the Netmaks from a given IPv4
+ * Address and returns the pure Network Address to the
+ * caller. For example:
+ *
+ * deleteNetMask("192.168.1.0/24") returns "192.168.1.0"
+ * 
+ */
+string deleteNetMask(const string ipAddr);
+
+/**
+ * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
+ *
+ * C++ Function: incrLastOctett
+ * Usage: string nextAddr = incrLastOctett(const string)
+ * -----------------------------------------------------
+ * Increases a given IPv4 Network Adress' (without netmask)
+ * Hostpart by 1, to get a pingeable network address. For
+ * example:
+ *
+ * incrLastOctett("192.168.1.19") returns "192.168.1.20"
+ *
+ */
+
+string incrLastOctett(const string ipAddr);
+
+
+
 #endif /* GANYLIB_H_ */
