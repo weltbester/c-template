@@ -15,6 +15,8 @@ myProgram-debug: $(DBGOBJS)
 clean:
 	#rm -f myProgram myProgram-debug *.o *.c~ *.h~
 	-$(RM) *.o *#* *~
+	find . -type f | xargs touch
+        rm -rf $(OBJS)
 cleaner: clean
 	rm myProgram myProgram-debug
 cleanest: clean
