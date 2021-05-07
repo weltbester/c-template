@@ -15,6 +15,8 @@ myProgram-debug: $(DBGOBJS)
 clean:
 	#rm -f myProgram myProgram-debug *.o *.c~ *.h~
 	-$(RM) *.o *#* *~
+	find . -type f | xargs touch
+        rm -rf $(OBJS)
 cleaner: clean
 	rm myProgram myProgram-debug
 cleanest: clean
@@ -31,5 +33,5 @@ depend:
 anotherFile.o: anotherHeader.h someHeader.h
 oneFile.o: oneHeader.h someHeader.h
 
-#Parallelizing computation (here: 8 Tasks in parallel)
+#Parallelizing computation (here: 8 Tasks in parallel)!
 # make -j8

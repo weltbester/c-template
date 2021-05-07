@@ -32,6 +32,6 @@
 /* FUNCTIONS */
 
 
-void greeting() {
+void greeting(void) {
   printf("Hello World!\n");
 } /* End of funktionsfile.c */
