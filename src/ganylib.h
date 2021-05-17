@@ -21,19 +21,38 @@
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
  *
+ * Function: bubble_sort(int *arr)
+ * Usage: bubble_sort(arr[])
+ * -------------------------------
+ * @brief Sorts an integer array
+ * @param int *arr
+ * @return int swaps Number of swaps needed 
+ *
+ * This function sorts an integer array in increasing
+ * order by applying the bubble-sort Algorithm.
+ * The function returns the no. of swaps needed
+ * to sort the whole array.
+ */
+
+int bubble_sort(int *array);
+
+/**
+ * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ *
  * Function: selection_sort(int *arr)
  * Usage: selection_sort(arr[])
  * ----------------------------------
  * @brief Sorts an integer array
  * @param int *arr
- * @param int n
- * @return void
+ * @return int swaps Number of swaps needed 
  *
  * This function sorts an integer array in increasing
  * order by applying the selection-sort Algorithm.
+ * The function returns the no. of swaps needed
+ * to sort the whole array.
  */
 
-void selection_sort(int *array);
+int selection_sort(int *array);
 
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart

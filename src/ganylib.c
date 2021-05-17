@@ -26,6 +26,32 @@
 #include "ganylib.h"
 
 /**
+ * Implementation notes: bubble_sort
+ * ------------------------------------
+ * This function implements the Bubble Sort algrithm.
+ *
+ * The Big-O of this Bubble Sort is N^2. 
+ */
+
+int bubble_sort(int *array) {
+  int swapped, tmp = 0, swaps = 0;
+  int n = sizeof(array) / sizeof(int);
+  
+  do {
+    swapped = 0;
+    for (int i = 0; i < n - 1; ++i) {
+      if (array[i+1] > array[i]) {
+	tmp = array[i];
+	array[i] = array[i+1];
+	array[i+1] = tmp;
+	swapped = 1;
+	swaps++;
+      }
+    }
+  } while (swapped);
+}
+
+/**
  * Implementation notes: selection_sort
  * ------------------------------------
  * This implementation uses an algorithm called selection sort, which can be
@@ -42,8 +68,9 @@
  * The Big-O of this sorting Algorithm is N^2. 
  */
 
-void selection_sort(int *array) {
+int selection_sort(int *array) {
   int n = sizeof(array) / sizeof(int);
+  int swaps = 0;
 
   for (int lh = 0; lh < n; ++lh) {
     int rh = lh;
@@ -55,7 +82,9 @@ void selection_sort(int *array) {
     int tmp = array[lh];
     array[lh] = array[rh];
     array[rh] = tmp;
+    swaps++;
   }
+  return swaps;
 }
 
 /**
