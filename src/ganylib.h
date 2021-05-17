@@ -21,6 +21,23 @@
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
  *
+ * Function: selection_sort(int *arr)
+ * Usage: selection_sort(arr[])
+ * ----------------------------------
+ * @brief Sorts an integer array
+ * @param int *arr
+ * @param int n
+ * @return void
+ *
+ * This function sorts an integer array in increasing
+ * order by applying the selection-sort Algorithm.
+ */
+
+void selection_sort(int *array);
+
+/**
+ * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ *
  * Function: deleteFilesByAge(char *folder, int period)
  * Usage: deleteFilesByAge("folder/to/check/", 30)
  * ----------------------------------------------------

@@ -26,9 +26,42 @@
 #include "ganylib.h"
 
 /**
+ * Implementation notes: selection_sort
+ * ------------------------------------
+ * This implementation uses an algorithm called selection sort, which can be
+ * described as follows. With your left hand (lh), point at each element in
+ * the vector in turn, starting at index 0. At each step in the cycle:
+ *
+ * 1. Find the smalles element in the range between your left hand and the
+ * end of the vector, and point at that element with your right hand (rh).
+ *
+ * 2. Move that element into its correct positioning by exchanging the
+ * elements indicated by your left and right hands. (This explanation
+ * is lend from Eric S. Roberts 'Programming Abstractions in C++'.)
+ *
+ * The Big-O of this sorting Algorithm is N^2. 
+ */
+
+void selection_sort(int *array) {
+  int n = sizeof(array) / sizeof(int);
+
+  for (int lh = 0; lh < n; ++lh) {
+    int rh = lh;
+    for (i = lh + 1; i < n; ++i) {
+      if (array[i] < array[rh]) {
+	rh = i;
+      }
+    }
+    int tmp = array[lh];
+    array[lh] = array[rh];
+    array[rh] = tmp;
+  }
+}
+
+/**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
  * File: deleteFilesByAge.c
- * Implementation notes: deleteFilesByAge.c
+ * Implementation notes: deleteFilesByAge()
  * ----------------------------------------
  * This function makes use of the 'system' command,
  * because the goal is achieved much easier than
@@ -40,7 +73,8 @@ void deleteFilesByAge(const char folder[], int period) {
   char deleteBackupFiles[MAX];
 
   // Create string for system command depending on function parameters
-  snprintf(deleteBackupFiles, MAX-1, "find %s -maxdepth 1 -type f -mtime -%d -delete", folder, period);
+  snprintf(deleteBackupFiles, MAX-1, "find %s -maxdepth 1 -type f -mtime -%d 
+		-delete", folder, period);
 
   // Cleanup old backups from black- and whitelist
   system(deleteBackupFiles);
@@ -135,13 +169,14 @@ int periodToMinute(char *periodUnit) {
  * The function copies 'line' in a new working string (lineCopy) for
  * edititng. This string is edited, until only the relevant data is leftover.
  * 
- * 1. Before edititing: "System uptime is, 1 years 51 weeks 6 days 23 hours 59 minutes"
+ * 1. Before edititing: "System uptime is, 1 years 51 weeks 6 days 23 hours 
+ * 59 minutes"
  * 2. After editing: "1 years 51 weeks 6 days 23 hours 59 minutes"
  *
- * This part is then tokenized and every time the loop is passed, one integer and the
- * correspondint time period is extracted. With the 'periodToMinute' function the duration
- * in minutes is calculated and added to 'totalMinutes'. This is done for all tuples in
- * the string.
+ * This part is then tokenized and every time the loop is passed, one integer 
+ * and the correspondint time period is extracted. With the 'periodToMinute'
+ * function the duration in minutes is calculated and added to 'totalMinutes'.
+ * This is done for all tuples in the string.
  * The function is also working if there are tuples missing, like in:
  *
  * "System uptime is,  3 days 8 hours 2 minutes"
@@ -190,7 +225,8 @@ int uptime(const char *line) {
  *  Copyright (C) Apr. 2020: Georg Pohl, 70174 Stuttgart
  */
 
-char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, const char *p3) {
+char *unspecificSearch(char *fn, int offset, const char *p1,
+		       const char *p2, const char *p3) {
   FILE *fp;
   fp = fopen(fn, "r");
   if (NULL == fp) {
@@ -272,7 +308,7 @@ char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, con
 /*     // Make last octet an Integer ... */
 /*     string lastOctett = ipAddr.substr(found + 1); */
 /*     std::size_t sz; */
-/*     int OctettAsInt = std::stoi(lastOctett, &sz); // Default base: 10, not needed as last argument here */
+/*     int OctettAsInt = std::stoi(lastOctett, &sz);
 /*     // ... increment last by 1 */
 /*     OctettAsInt++; */
 /*     // Transform into string again ... */
