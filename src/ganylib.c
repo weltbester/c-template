@@ -33,14 +33,13 @@
  * The Big-O of this Bubble Sort is N^2. 
  */
 
-int bubble_sort(int *array) {
+int bubble_sort(int *array, int n) {
   int swapped, tmp = 0, swaps = 0;
-  int n = sizeof(array) / sizeof(int);
   
   do {
     swapped = 0;
     for (int i = 0; i < n - 1; ++i) {
-      if (array[i+1] > array[i]) {
+      if (array[i+1] < array[i]) {
 	tmp = array[i];
 	array[i] = array[i+1];
 	array[i+1] = tmp;
@@ -49,6 +48,7 @@ int bubble_sort(int *array) {
       }
     }
   } while (swapped);
+  return swaps;
 }
 
 /**
@@ -68,13 +68,12 @@ int bubble_sort(int *array) {
  * The Big-O of this sorting Algorithm is N^2. 
  */
 
-int selection_sort(int *array) {
-  int n = sizeof(array) / sizeof(int);
+int selection_sort(int *array, int n) {
   int swaps = 0;
 
   for (int lh = 0; lh < n; ++lh) {
     int rh = lh;
-    for (i = lh + 1; i < n; ++i) {
+    for (int i = lh + 1; i < n; ++i) {
       if (array[i] < array[rh]) {
 	rh = i;
       }
@@ -102,8 +101,7 @@ void deleteFilesByAge(const char folder[], int period) {
   char deleteBackupFiles[MAX];
 
   // Create string for system command depending on function parameters
-  snprintf(deleteBackupFiles, MAX-1, "find %s -maxdepth 1 -type f -mtime -%d 
-		-delete", folder, period);
+  snprintf(deleteBackupFiles, MAX-1, "find %s -maxdepth 1 -type f -mtime -%d -delete", folder, period);
 
   // Cleanup old backups from black- and whitelist
   system(deleteBackupFiles);
@@ -117,7 +115,7 @@ void deleteFilesByAge(const char folder[], int period) {
  *  Nothing to declare.
  */
 
-void printIntVector(const int  *vec, int n) {
+void printIntVector(const int *vec, int n) {
   printf("[ ");
   for (int i = 0; i < n; ++i) {
     if (i == 0) {
@@ -134,7 +132,7 @@ void printIntVector(const int  *vec, int n) {
  *  ---------------------------------------
  *  Nothing to declare.
  */
-void printDoubleVector(const double  *vec, int n) {
+void printDoubleVector(const double *vec, int n) {
   printf("[ ");
   for (int i = 0; i < n; ++i) {
     if (i == 0) {
@@ -163,7 +161,7 @@ void dump_buffer(FILE *fp) {
 
 /* Deletes newline char ('\n'), if there */
 void killNL(char *str) {
-  size_t p = strlen(str);
+  int p = strlen(str);
   if ( str[p-1] == '\n') {
     str[p-1] = '\0';
   }
@@ -337,8 +335,7 @@ char *unspecificSearch(char *fn, int offset, const char *p1,
 /*     // Make last octet an Integer ... */
 /*     string lastOctett = ipAddr.substr(found + 1); */
 /*     std::size_t sz; */
-/*     int OctettAsInt = std::stoi(lastOctett, &sz);
-/*     // ... increment last by 1 */
+/*     int OctettAsInt = std::stoi(lastOctett, &sz); // ... increment last by 1 */
 /*     OctettAsInt++; */
 /*     // Transform into string again ... */
 /*     incrIPAddr = ipAddr.substr(0, found + 1); */

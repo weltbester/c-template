@@ -34,16 +34,17 @@
  * to sort the whole array.
  */
 
-int bubble_sort(int *array);
+int bubble_sort(int *array, int n);
 
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
  *
- * Function: selection_sort(int *arr)
- * Usage: selection_sort(arr[])
- * ----------------------------------
+ * Function: selection_sort
+ * Usage: int cycles = selection_sort(*arr, int n)
+ * -----------------------------------------------
  * @brief Sorts an integer array
  * @param int *arr
+ * @param int n
  * @return int swaps Number of swaps needed 
  *
  * This function sorts an integer array in increasing
@@ -52,7 +53,7 @@ int bubble_sort(int *array);
  * to sort the whole array.
  */
 
-int selection_sort(int *array);
+int selection_sort(int *array, int n);
 
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
@@ -80,27 +81,27 @@ void deleteFilesByAge(const char folder[], int period);
  * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
  *
  * Function: printIntVector
- * Usage: printIntVector(int *vec)
- * -------------------------------
+ * Usage: printIntVector(int *vec, int n)
+ * --------------------------------------
  * Prints values of an integral vector starting
  * form index 0 to the end.
  *
  */
 
-void printIntVector(const int  *vec, int n);
+void printIntVector(const int *vec, int n);
 
 /**
  * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
  *
  * Function: printDoubleVector
- * Usage: printDoubleVector(int *vec)
- * ----------------------------------
+ * Usage: printDoubleVector(int *vec, int n)
+ * -----------------------------------------
  * Prints values of a double vector starting
  * form index 0 to the end.
  *
  */
 
-void printDoubleVector(const double  *vec, int n);
+void printDoubleVector(const double *vec, int n);
 
 /**
  * Copyright February 2021: Georg Pohl, 70174 Stuttgart, Germany
