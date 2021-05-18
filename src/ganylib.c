@@ -33,9 +33,8 @@
  * The Big-O of this Bubble Sort is N^2. 
  */
 
-int bubble_sort(int *array) {
+int bubble_sort(int *array, int n) {
   int swapped, tmp = 0, swaps = 0;
-  int n = sizeof(array) / sizeof(int);
   
   do {
     swapped = 0;
@@ -49,6 +48,7 @@ int bubble_sort(int *array) {
       }
     }
   } while (swapped);
+	return swaps;
 }
 
 /**
@@ -68,8 +68,7 @@ int bubble_sort(int *array) {
  * The Big-O of this sorting Algorithm is N^2. 
  */
 
-int selection_sort(int *array) {
-  int n = sizeof(array) / sizeof(int);
+int selection_sort(int *array, int n) {
   int swaps = 0;
 
   for (int lh = 0; lh < n; ++lh) {
