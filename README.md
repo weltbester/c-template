@@ -2,6 +2,7 @@
 Template for C programs with Makefile, Header- and Implementationfiles
 
 # Documentation
+Explain conditional compilation flags
 Links and Videos
 
 ## Issues

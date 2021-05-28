@@ -23,17 +23,18 @@
  *  Here you can describe in detail how
  *  the implementation is done, what are
  *  the corner cases and what problems
- *  can arise due to wrong usage.
+ *  can arise due to wrong usage (side-effects).
  *
  *  Copyright (C) Jan. 2021: Georg Pohl, 70174 Stuttgart
  */
 
-#ifndef _FUNKTIONSFILE_H
-#define _FUNKTIONSFILE_H
+#ifndef FUNKTIONSFILE_H
+#define FUNKTIONSFILE_H
 
+/* If needed */
 #include <stdio.h>
 
 void greeting(void);
 
-#endif /* !_FUNKTIONSFILE_H */
+#endif /* FUNKTIONSFILE_H */
 /* End of funktionsfile.h */

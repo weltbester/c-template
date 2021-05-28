@@ -21,15 +21,115 @@
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
  *
- * Function: bubble_sort(int *arr)
- * Usage: bubble_sort(arr[])
- * -------------------------------
+ * Function: delete_entries_from_file
+ * Usage: delete_entries_from_file(filename)
+ * -----------------------------------------
+ * @brief Deletes entries in a text file
+ * @param char *fn
+ * @return void
+ *
+ * The function can be used to delete random entries
+ * from a given file. Therefore the user has to enter
+ * the words/terms to be deleted.
+ * Then the original file is read line by line and
+ * every term that is  n o t  mentioned is written in
+ * a temporay file. At the end the temp-file is renamed
+ * to the original filename, which contains only the
+ * leftover entries.
+ */
+
+void delete_entries_from_file(char *fn)
+
+/**
+ * Copyright Eric S. Roberts
+ *
+ * Function:findInSortedArray
+ * Usage: int index = findInSortedArray(key, arr, n);
+ * --------------------------------------------------
+ * @brief Wrapper function for binarysearch()
+ * @param int key
+ * @param int *arr
+ * @param int n
+ * @return int index
+ *
+ * Searches for the specified key in the array *arr,
+ * which must be sorted in lexicographic (character code)
+ * order. If the key is found, the function returns the
+ * index in the vector at which that key appers. (If the
+ * key appears more than once in the array, any of the
+ * matching indices may be returned). If the key does not
+ * exist in the array, the function returns -1. This
+ * implementation is simply a wrapper function; all of
+ * real work is done by the more general binary search
+ * function.
+ */
+
+int findInSortedArray(int key, int *arr, int n);
+
+/**
+ * Function: binarysearch
+ * Usage: int index = binarysearch(key, arr, p1, p2);
+ * --------------------------------------------------
+ * @brief 
+ * Searches for the specific key in the arrar *arr,
+ * looking only at indices between p1 and p2, inclusive.
+ * The function returns the index of a matching element,
+ * or -1 if no match is found.
+ */
+
+int binarysearch(int key, int *arr, int p1, int p2);
+
+/**
+ * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ *
+ * Function: shell_sort(int *arr)
+ * Usage: shell_sort(arr[])
+ * ----------------------------------
  * @brief Sorts an integer array
  * @param int *arr
+ * @param int n
  * @return int swaps Number of swaps needed 
  *
  * This function sorts an integer array in increasing
- * order by applying the bubble-sort Algorithm.
+ * order by applying the shell-sort algorithm.
+ * The function returns the no. of swaps needed
+ * to sort the whole array.
+ */
+
+int shell_sort(int *array, int n);
+
+/**
+ * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ *
+ * Function: insertion_sort(int *arr)
+ * Usage: insertion_sort(arr[])
+ * ----------------------------------
+ * @brief Sorts an integer array
+ * @param int *arr
+ * @param int n
+ * @return int swaps Number of swaps needed 
+ *
+ * This function sorts an integer array in increasing
+ * order by applying the insertion-sort algorithm.
+ * The function returns the no. of swaps needed
+ * to sort the whole array.
+ */
+
+int insertion_sort(int *array, int n);
+
+/**
+ * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ *
+ * Function: bubble_sort(int *arr, int n)
+ * Usage: bubble_sort(arr[], n)
+ * --------------------------------------
+ * @brief Sorts an integer array
+ * @param int *arr
+ * @param int n
+ * @return int swaps Number of swaps needed 
+ *
+ * This function sorts an integer array in increasing
+ * order by applying the bubble-sort algorithm.
  * The function returns the no. of swaps needed
  * to sort the whole array.
  */
@@ -48,7 +148,7 @@ int bubble_sort(int *array, int n);
  * @return int swaps Number of swaps needed 
  *
  * This function sorts an integer array in increasing
- * order by applying the selection-sort Algorithm.
+ * order by applying the selection-sort algorithm.
  * The function returns the no. of swaps needed
  * to sort the whole array.
  */

@@ -26,6 +26,175 @@
 #include "ganylib.h"
 
 /**
+ * Implementation notes: delete_entries_from_file
+ * ----------------------------------------------
+ * This function implements the binary delete_entries_from_file
+ * function.
+ */
+
+void delete_entries_from_file(char *fn) {
+  const int MAX = 65;
+  FILE *read, *write;
+  char entry[MAX];
+  char **entries_to_erase = NULL;
+  int i, n;
+  
+  // Set entries counter to zero and take input from user
+  n = 0;
+  printf("Entries to delete? Input 'q' ENTER when finished" 
+	"\nEnter captial letters line by line:\n");
+
+  printf("-> ");
+  scanf("%s", entry);
+  while (strcmp(entry, "q") != 0) {
+    if (entries_to_erase == NULL) {
+      entries_to_erase = malloc(sizeof(char *));
+      if (entries_to_erase == NULL) {
+	fprintf(stderr, "malloc: not enough memory for 'entries_to_erase'");
+	exit(EXIT_FAILURE);
+      }
+    } else {
+      entries_to_erase = realloc(entries_to_erase, (n + 1) * sizeof(char *));
+      if (entries_to_erase == NULL) {
+	fprintf(stderr, "realloc: not enough new memory for 'entries_to_erase'");
+	exit(EXIT_FAILURE);
+      }
+    }
+    int len = strlen(entry);
+    entries_to_erase[n] = malloc((len + 1) * sizeof(char));
+    if (entries_to_erase[n] == NULL) {
+      fprintf(stderr, "realloc: not enough new memory for 'entries_to_erase'");
+      exit(EXIT_FAILURE);
+    }
+    strncpy(entries_to_erase[n], entry, len);
+    n++;
+    printf("-> ");
+    scanf("%s", entry);
+  } 
+  // Read original file and copy relevant routers to temporary file
+  read = fopen(fn, "r");
+  write = fopen("tmp_file.txt", "w");
+  if (read == NULL || write == NULL) {
+    fprintf(stderr, "fopen: can't open file\n");
+    exit(EXIT_FAILURE);
+  }
+  while ((fgets(entry, MAX, read)) != NULL) {
+    int found = 0;
+    killNL(entry);
+    for (i = 0; i < n; ++i) {
+      if ((strcmp(entry, entries_to_erase[i]) == 0)) {
+  	found = 1;
+  	break;
+      }
+    }
+    if (found == 1) {
+      printf("Deleted %s\n", entries_to_erase[i]);
+      // found = 0;
+      continue;
+    }
+    fprintf(write, "%s\n", entry);
+  }
+  // Free memory
+  for (int j = 0; j < n; ++j) {
+    free(entries_to_erase[j]);
+  }
+  free(entries_to_erase);
+  // Close filestreams
+  fclose(read);
+  fclose(write);
+
+  rename("tmp_file.txt", fn);
+  return;
+}
+
+/**
+ * Implementation notes: findInSortedArray
+ * ---------------------------------------
+ * This function is a wrapper function for the
+ * binary search function.
+ *
+ * The Big-O of this binary search is log N. 
+ */
+int findInSortedArray(int key, int *arr, int n) {
+  return binarysearch(key, arr, 0, n-1);
+}
+
+/**
+ * Implementation notes: binarysearch
+ * ----------------------------------
+ * This function implements the binary search algrithm.
+ *
+ * The Big-O of this binary search is log N. 
+ */
+
+int binarysearch(int key, int *arr, int p1, int p2) {
+  if (p1 > p2) {
+    return -1;
+  }
+  int mid = (p1 + p2) / 2;
+  if (key == arr[mid]) {
+    return mid;
+  }
+  if (key < arr[mid]) {
+    return binarysearch(key, arr, p1, mid - 1);
+  } else {
+    return binarysearch(key, arr, mid + 1, p2);
+  }
+}
+
+/**
+ * Implementation notes: shell_sort
+ * --------------------------------
+ * This function implements the Shell Sort algrithm.
+ *
+ * The Big-O of this Shell Sort is N^2. 
+ */
+
+int shell_sort (int *array, int n) {
+  int i, j, temp, m, swaps = 0;
+  /* Anfangswert für die Distanz errechnen */
+  for ( m = 1; m <= n/9; m = 3*m+1) {
+    ;
+  }
+  for (; m > 0; m /= 3) {
+    for (i = m; i <= n; i++) {
+      temp = array[i];
+      /* Größer als temp und nicht n
+       * sowie >= und nicht > */
+       for(j = i; j >= m && array[j-m] > temp; j -= m) {
+           array[j] = array[j-m];
+        }
+        array[j] = temp;
+	swaps++;
+     }
+  }
+  return swaps;
+}
+
+/**
+ * Implementation notes: insertion_sort
+ * ------------------------------------
+ * This function implements the Insertion Sort algrithm.
+ *
+ * The Big-O of this Insertion Sort is N^2. 
+ */
+
+int insertion_sort(int *array, int n) {
+  int i, ndx_min, val_min, swaps = 0;
+
+  for (i = 1; i < n; ++i) {
+    
+    val_min = array[i];
+    for (ndx_min = i; array[ndx_min - 1] > val_min && ndx_min > 0; --ndx_min) {
+      array[ndx_min] = array[ndx_min - 1];
+    }
+    array[ndx_min] = val_min;
+    swaps++;
+  }
+  return swaps;
+}
+
+/**
  * Implementation notes: bubble_sort
  * ------------------------------------
  * This function implements the Bubble Sort algrithm.
