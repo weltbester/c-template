@@ -21,6 +21,38 @@
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
  *
+ * Function: make_string_lwrcase
+ * Usage: make_string_lwrcase(str)
+ * -----------------------------------------
+ * @brief Converts string to lowercase
+ * @param char *str
+ * @return void
+ *
+ * A whole string (as opposed to 'tolower') is
+ * converted to lowercase letters, inline.
+ */
+
+void make_string_lwrcase(char *str);
+
+/**
+ * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ *
+ * Function: make_string_uprcase
+ * Usage: make_string_uprcase(str)
+ * -----------------------------------------
+ * @brief Converts string to uppercase
+ * @param char *str
+ * @return void
+ *
+ * A whole string (as opposed to 'toupper') is
+ * converted to uppercase letters, inline.
+ */
+
+void make_string_uprcase(char *str);
+
+/**
+ * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ *
  * Function: delete_entries_from_file
  * Usage: delete_entries_from_file(filename)
  * -----------------------------------------
@@ -29,16 +61,17 @@
  * @return void
  *
  * The function can be used to delete random entries
- * from a given file. Therefore the user has to enter
- * the words/terms to be deleted.
+ * from a given file, line by line. Therefore the
+ * user has to enter the words/terms to be deleted.
+ * Input is converted to uppercase.
  * Then the original file is read line by line and
- * every term that is  n o t  mentioned is written in
- * a temporay file. At the end the temp-file is renamed
- * to the original filename, which contains only the
- * leftover entries.
+ * every term that is  n o t  mentioned from the user
+ * is written in a temporay file. At the end the
+ * temp-file is renamed to the original filename,
+ * which contains only the leftover entries.
  */
 
-void delete_entries_from_file(char *fn)
+void delete_entries_from_file(char *fn);
 
 /**
  * Copyright Eric S. Roberts

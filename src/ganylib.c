@@ -23,7 +23,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "ganylib.h"
+
+/**
+ * Implementation notes: make_string_lwrcase
+ * -----------------------------------------
+ * This function implements the binary make_string_lwrcase
+ * function.
+ */
+
+void make_string_lwrcase(char *str) {
+  while (*str) {
+    *str = tolower((unsigned int) *str);
+    str++;
+  }
+}
+
+/**
+ * Implementation notes: make_string_uprcase
+ * -----------------------------------------
+ * This function implements the binary make_string_uprcase
+ * function.
+ */
+
+void make_string_uprcase(char *str) {
+  while (*str) {
+    *str = toupper((unsigned int) *str);
+    str++;
+  }
+}
 
 /**
  * Implementation notes: delete_entries_from_file
@@ -66,18 +95,21 @@ void delete_entries_from_file(char *fn) {
       fprintf(stderr, "realloc: not enough new memory for 'entries_to_erase'");
       exit(EXIT_FAILURE);
     }
+    make_string_uprcase(entry);
     strncpy(entries_to_erase[n], entry, len);
     n++;
     printf("-> ");
     scanf("%s", entry);
-  } 
-  // Read original file and copy relevant routers to temporary file
+  }
+  
+  // Read original file and write to be deleted entries to temporary file
   read = fopen(fn, "r");
   write = fopen("tmp_file.txt", "w");
   if (read == NULL || write == NULL) {
     fprintf(stderr, "fopen: can't open file\n");
     exit(EXIT_FAILURE);
   }
+  // Compare entries from file with entries to delete
   while ((fgets(entry, MAX, read)) != NULL) {
     int found = 0;
     killNL(entry);
@@ -89,17 +121,16 @@ void delete_entries_from_file(char *fn) {
     }
     if (found == 1) {
       printf("Deleted %s\n", entries_to_erase[i]);
-      // found = 0;
       continue;
     }
     fprintf(write, "%s\n", entry);
   }
-  // Free memory
+
   for (int j = 0; j < n; ++j) {
     free(entries_to_erase[j]);
   }
   free(entries_to_erase);
-  // Close filestreams
+  
   fclose(read);
   fclose(write);
 
