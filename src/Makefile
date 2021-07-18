@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -std=c11 -pedantic -Wall -Wextra -Wwrite-strings -O3
-DBGFLAGS = -std=c11 -pedantic -Wall -Wextra -Wwrite-strings -ggdb3 -DDEBUG
+CFLAGS = -std=gnu99 -Wreturn-stack-address -pedantic -Wall -Wextra -Wwrite-strings -O3
+DBGFLAGS = -std=gnu99 -Wreturn-stack-address -pedantic -Wall -Wextra -Wwrite-strings -ggdb3 -DDEBUG
 SRCS=$(wildcard *.c)
 OBJS=$(patsubst %.c,%.o,$(SRCS))
 DBGOBJS=$(patsubst %.c,%.dbg.o,$(SRCS))
