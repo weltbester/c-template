@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -O3 -std=gnu99 -pedantic -Wall $$warnflags_2
 DBGFLAGS = -ggdb3 -DDEBUG -std=gnu99 -pedantic -Wall $$warnflags_2
 export warnflags_1 = -Wreturn-stack-address -pedantic -Wall -Wextra -Wwrite-strings
-export warnflags_2 = -Wfloat-equal -Wtype-limits -Wpointer-arith -Wlogical-op -Wshadow -Wno-unused -fno-diagnostics-show-option -fno-builtin -fno-inline -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0
+export warnflags_2 = -Wfloat-equal -Wtype-limits -Wpointer-arith  -Wshadow -Wno-unused -fno-diagnostics-show-option -fno-builtin -fno-inline -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0
 
 SRCS=$(wildcard *.c)
 OBJS=$(patsubst %.c,%.o,$(SRCS))

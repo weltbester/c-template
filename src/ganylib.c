@@ -1,5 +1,5 @@
 /** @file ganylib.c
- *  @brief Library with useful functions
+ *  @brief Library with useful functions*
  *
  *  @author Georg Pohl
  *
@@ -18,12 +18,13 @@
  *  Copyright (C) Apr. 2020: Georg Pohl, 70174 Stuttgart
  */
 
-#define _GNU_SOURCE	/* for getline(), Non-ANSI */
+#define _GNU_SOURCE     /* for getline(), Non-ANSI */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <libgen.h>
 #include "ganylib.h"
 
 /**
@@ -65,13 +66,14 @@ void delete_entries_from_file(char *fn) {
   const int MAX = 65;
   FILE *read, *write;
   char entry[MAX];
+  char *dirc = strdup(fn); /*!< Copy of 'fn', to extract directory name later */
   char **entries_to_erase = NULL;
   int i, n;
   
   // Set entries counter to zero and take input from user
   n = 0;
-  printf("Entries to delete? Input 'q' ENTER when finished" 
-	"\nEnter captial letters line by line:\n");
+  printf("\nEnter entries line by line:\n"
+         "Input 'q' and ENTER, when finished:\n");
 
   printf("-> ");
   scanf("%s", entry);
@@ -79,14 +81,14 @@ void delete_entries_from_file(char *fn) {
     if (entries_to_erase == NULL) {
       entries_to_erase = malloc(sizeof(char *));
       if (entries_to_erase == NULL) {
-	fprintf(stderr, "malloc: not enough memory for 'entries_to_erase'");
-	exit(EXIT_FAILURE);
+        fprintf(stderr, "malloc: not enough memory for 'entries_to_erase'");
+        exit(EXIT_FAILURE);
       }
     } else {
       entries_to_erase = realloc(entries_to_erase, (n + 1) * sizeof(char *));
       if (entries_to_erase == NULL) {
-	fprintf(stderr, "realloc: not enough new memory for 'entries_to_erase'");
-	exit(EXIT_FAILURE);
+        fprintf(stderr, "realloc: not enough new memory for 'entries_to_erase'");
+        exit(EXIT_FAILURE);
       }
     }
     int len = strlen(entry);
@@ -101,10 +103,13 @@ void delete_entries_from_file(char *fn) {
     printf("-> ");
     scanf("%s", entry);
   }
-  
+  printf("\n");
+
   // Read original file and write to be deleted entries to temporary file
+  char *path_tmpfile = dirname(dirc);
+  strcat(path_tmpfile, "/tmp_file.txt");
   read = fopen(fn, "r");
-  write = fopen("tmp_file.txt", "w");
+  write = fopen(path_tmpfile, "w");
   if (read == NULL || write == NULL) {
     fprintf(stderr, "fopen: can't open file\n");
     exit(EXIT_FAILURE);
@@ -115,8 +120,8 @@ void delete_entries_from_file(char *fn) {
     killNL(entry);
     for (i = 0; i < n; ++i) {
       if ((strcmp(entry, entries_to_erase[i]) == 0)) {
-  	found = 1;
-  	break;
+        found = 1;
+        break;
       }
     }
     if (found == 1) {
@@ -134,7 +139,7 @@ void delete_entries_from_file(char *fn) {
   fclose(read);
   fclose(write);
 
-  rename("tmp_file.txt", fn);
+  rename(path_tmpfile, fn);
   return;
 }
 
@@ -196,7 +201,7 @@ int shell_sort (int *array, int n) {
            array[j] = array[j-m];
         }
         array[j] = temp;
-	swaps++;
+        swaps++;
      }
   }
   return swaps;
@@ -240,11 +245,11 @@ int bubble_sort(int *array, int n) {
     swapped = 0;
     for (int i = 0; i < n - 1; ++i) {
       if (array[i+1] < array[i]) {
-	tmp = array[i];
-	array[i] = array[i+1];
-	array[i+1] = tmp;
-	swapped = 1;
-	swaps++;
+        tmp = array[i];
+        array[i] = array[i+1];
+        array[i+1] = tmp;
+        swapped = 1;
+        swaps++;
       }
     }
   } while (swapped);
@@ -275,7 +280,7 @@ int selection_sort(int *array, int n) {
     int rh = lh;
     for (int i = lh + 1; i < n; ++i) {
       if (array[i] < array[rh]) {
-	rh = i;
+        rh = i;
       }
     }
     int tmp = array[lh];
@@ -293,7 +298,8 @@ int selection_sort(int *array, int n) {
  * ----------------------------------------
  * This function makes use of the 'system' command,
  * because the goal is achieved much easier than
- * with the Non-ANSI-C 'mtime' attribute of the
+ * with the Non-ANSI-C 'mtime' attribute of the 'stat'
+ * function.
  */
 
 void deleteFilesByAge(const char folder[], int period) {
@@ -301,7 +307,8 @@ void deleteFilesByAge(const char folder[], int period) {
   char deleteBackupFiles[MAX];
 
   // Create string for system command depending on function parameters
-  snprintf(deleteBackupFiles, MAX-1, "find %s -maxdepth 1 -type f -mtime -%d -delete", folder, period);
+  snprintf(deleteBackupFiles, MAX-1, "find %s -maxdepth 1 -type f -mtime \
+                                        +%d -delete", folder, period);
 
   // Cleanup old backups from black- and whitelist
   system(deleteBackupFiles);
@@ -453,7 +460,7 @@ int uptime(const char *line) {
  */
 
 char *unspecificSearch(char *fn, int offset, const char *p1,
-		       const char *p2, const char *p3) {
+                       const char *p2, const char *p3) {
   FILE *fp;
   fp = fopen(fn, "r");
   if (NULL == fp) {
@@ -548,4 +555,3 @@ char *unspecificSearch(char *fn, int offset, const char *p1,
 /* } */
 
 /* End of ganylib.c */
-
