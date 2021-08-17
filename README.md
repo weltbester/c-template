@@ -1,5 +1,5 @@
 # Title [![Build Status][ci-image]][ci] [![Code Climate][grade-image]][grade] [![Gem Version][version-image]][version]
-Template for C programs with Makefile, Header- and Implementationfiles
+Template for C programs with Makefile, Header- and Implementationfiles.
 
 # Documentation
 Explain conditional compilation flags
