@@ -10,7 +10,7 @@ And in that moment I thought to myself: _Did I turn off the stove?_
 Also report non-repairable compiler warnings here.
 
 # Install
-You should use the `strong` tag.
+You should urgently use the `strong` tag.
 
 ## Run/Examples
 ```
