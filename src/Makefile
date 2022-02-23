@@ -12,9 +12,9 @@ all: myProgram myProgram-debug
 myProgram: $(OBJS)
         gcc -o $@ -O3 $(OBJS)
 myProgram-debug: $(DBGOBJS)
-                 gcc -o $@ -ggdb3 $(DBGOBJS)
+        gcc -o $@ -ggdb3 $(DBGOBJS)
 %.dbg.o: %.c
-         gcc $(DBGFLAGS) -c -o $@ $<
+        gcc $(DBGFLAGS) -c -o $@ $<
 clean:
         #rm -f myProgram myProgram-debug *.o *.c~ *.h~
         -$(RM) *.o *#* *~
