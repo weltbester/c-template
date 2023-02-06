@@ -100,6 +100,8 @@ void delete_entries_from_file(char *fn);
 int findInSortedArray(int key, int *arr, int n);
 
 /**
+ * Copyright Eric S. Roberts
+ *
  * Function: binarysearch
  * Usage: int index = binarysearch(key, arr, p1, p2);
  * --------------------------------------------------
@@ -113,7 +115,7 @@ int findInSortedArray(int key, int *arr, int n);
 int binarysearch(int key, int *arr, int p1, int p2);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright Eric S. Roberts
  *
  * Function: shell_sort(int *arr)
  * Usage: shell_sort(arr[])
@@ -132,7 +134,7 @@ int binarysearch(int key, int *arr, int p1, int p2);
 int shell_sort(int *array, int n);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright Eric S. Roberts
  *
  * Function: insertion_sort(int *arr)
  * Usage: insertion_sort(arr[])
@@ -151,7 +153,7 @@ int shell_sort(int *array, int n);
 int insertion_sort(int *array, int n);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright Eric S. Roberts
  *
  * Function: bubble_sort(int *arr, int n)
  * Usage: bubble_sort(arr[], n)
@@ -170,7 +172,7 @@ int insertion_sort(int *array, int n);
 int bubble_sort(int *array, int n);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright Eric S. Roberts
  *
  * Function: selection_sort
  * Usage: int cycles = selection_sort(*arr, int n)
