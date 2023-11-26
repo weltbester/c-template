@@ -28,6 +28,204 @@
 #include "ganylib.h"
 
 /**
+ * Implementation notes: search_pattern_in_string
+ * ----------------------------------------------
+ * This function implements the 'replace_from_lenght' function.
+ */
+
+int search_pattern_in_string(char *a, char *b) {
+  int pos = -1;
+  int a_len = (int)strlen(a), b_len = (int)strlen(b);
+  if (b_len > a_len) {
+    return -1;
+  }
+  for (size_t i = 0; i < a_len; ++i) {
+    if (a[i] == b[0]) {
+      pos = i;
+      for (size_t k = 0; k < b_len; ++k) {
+	if (a[i + k] != b[k]) {
+	  pos = -1;
+	  break;
+	}
+      }
+    }
+    if (pos != -1) {
+      break;
+    }
+  }
+  return pos;
+}
+
+/**
+ * Implementation notes: replace_from_lenght
+ * -----------------------------------------
+ * This function implements the 'replace_from_length' function.
+ */
+
+void replace_from_length(char *a, char *b, int from, int len) {
+  erase_from_length(a, from, len);
+  insert_at_position(a, b, from);
+}
+
+/**
+ * Implementation notes: replace_from_to
+ * -------------------------------------
+ * This function implements the 'replace_from_to' function.
+ */
+
+void replace_from_to(char *a, char *b, int from, int to) {
+  erase_from_to(a, from, to);
+  insert_at_position(a, b, from);
+}
+
+/**
+ * Implementation notes: insert_at_position
+ * ----------------------------------------
+ * This function implements the 'insert_at_position' function.
+ */
+
+void insert_at_position(char *a, char *b, int position) {
+  int a_len = (int)strlen(a), b_len = (int)strlen(b);
+  if (position < 0) {
+    return;
+  }
+  if (position > a_len) {
+    position = a_len;
+  }
+  /* Write original string from backwards until index 'position' */
+  for (size_t i = a_len + b_len; i >= position + b_len; --i) {
+    a[i] = a[i - b_len];
+  }
+  /* Continue writing the insertion string from index 'position' forwards into
+   * the original string.
+   */
+  for (size_t j = position; j < position + b_len; ++j) {
+    a[j] = b[j - position];
+  }
+}
+
+/**
+ * Implementation notes: erase_from_length
+ * ---------------------------------------
+ * This function implements the 'erase_from_length' function.
+ */
+
+void erase_from_length(char *a, int from, int len) {
+  int a_len = (int)strlen(a);
+  if (from  < 0 || len <= 0 || from > a_len) {
+    return;
+  }
+  if (from + len > a_len) {
+    len = a_len - from;
+  }
+  for (size_t i = from; i < a_len; ++i) {
+    a[i] = a[i + len];
+    if (a[i] == '\0') {
+      break;
+    }
+  }
+}
+
+/**
+ * Implementation notes: text_part_from_length
+ * -------------------------------------------
+ * This function implements the 'text_part_from_length' function.
+ */
+
+void text_part_from_length(char *a, char *b, int from, int len) {
+  b[0] = '\0';
+  int a_len = (int)strlen(a);
+  if (from < 0 || len <= 0 || from > a_len ) {
+    return;
+  }
+  if (from * len > a_len) {
+    len = a_len - from;
+  }
+  for (size_t i = from; i < from + a_len; ++i) {
+    b[i - from] = a[i];
+  }
+  b[len] = '\0';
+}
+
+/**
+ * Implementation notes: erase_from_to
+ * -----------------------------------
+ * This function implements the 'erase_from_to' function.
+ */
+
+void erase_from_to(char *a, int from, int to) {
+  int a_len = strlen(a);
+  if (from < 0 || to < 1 || from >= to || from > a_len) {
+    return;
+  }
+  if (to > a_len) {
+    to = a_len;
+  }
+  for (size_t i = from; i < a_len; ++i) {
+    a[i] = a[i + to - from];
+    if (a[i] == '\0') {
+      break;
+    }
+  }
+}
+
+/**
+ * Implementation notes: text_part_from_to
+ * ---------------------------------------
+ * This function implements the 'text_part_from_to' function.
+ */
+
+void text_part_from_to(char *a, char *b, int from, int to) {
+  int a_len = (int)strlen(a);
+  b[0] = '\0';
+    printf("%s\n", "Fehler!");
+  if (from < 0 || to < 1 || from >= to || from > a_len) {
+    return;
+  }
+  if (to > a_len) {
+    to = a_len;
+  }
+  for (size_t i = from; i < to; ++i) {
+    b[i - from] = a[i];
+  }
+  b[to - from] = '\0';
+}
+
+/**
+ * Implementation notes: unspecific_search
+ * ---------------------------------------
+ * This function implements the 'unspecific_search'
+ * function.
+ */
+
+char* unspecific_search(const char* line, const char* pattern, int position) {
+    char* result = NULL;
+    char* token;
+    int count = 0;
+
+    // Use strstr to find the pattern in the line
+    token = strstr(line, pattern);
+
+    // If the pattern is found
+    if (token != NULL) {
+        // Tokenize the string using the pattern as a delimiter
+        char* delimiter = " ";
+        token = strtok(token, delimiter);
+
+        while (token != NULL) {
+            count++;
+            if (count == position) {
+                result = token;
+                break;
+            }
+            token = strtok(NULL, delimiter);
+        }
+    }
+
+    return result;
+}
+
+/**
  * Implementation notes: make_string_lwrcase
  * -----------------------------------------
  * This function implements the binary make_string_lwrcase

@@ -18,6 +18,187 @@
 #define WEEK    (DAY * 7)
 #define YEAR    (WEEK * 52)
 
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: search_pattern_in_string
+ * Usage: search_pattern_in_string(char *a, char *b)
+ * -------------------------------------------------
+ * @brief Searches a substring in a string
+ * @param char *a String to search in
+ * @param char *b Search string
+ * @return int index Position where string is found in 'a'
+ * @exception Exceptions
+ * 	      
+ * The funktion returns the index where the pattern is found in the original
+ * string 'a', otherwise if not found it returns -1.
+ *
+ */
+
+int search_pattern_in_string(char *a, char *b);
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: replace_from_length
+ * Usage: replace_from_length(char *a, char *b, int from, int len)
+ * -----------------------------------------------------------
+ * @brief Replaces part of 'a' with 'b'
+ * @param char *a Replacement takes place here
+ * @param char *b String to be inserted
+ * @param int from Start index
+ * @param int len Length of string 'b'
+ * @return void
+ * @exception Exceptions
+ * 	      
+ * This function replaces a substring 'b' in the original string 'a'. It uses
+ * the already defined functions 'erase_from_length' and 'insert_at_position'.
+ *
+ */
+
+void replace_from_length(char *a, char *b, int from, int len);
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: replace_from_to
+ * Usage: replace_from_to(char *a, char *b, int from, int to)
+ * ----------------------------------------------------------
+ * @brief Replaces part of 'a' with 'b'
+ * @param char *a Replacement takes place here
+ * @param char *b String to be inserted
+ * @param int from Start index
+ * @param int to End index
+ * @return void
+ * @exception Exceptions
+ * 	      
+ * This function replaces a substring 'b' in the original string 'a'. It uses
+ * the already defined functions 'erase_from_to' and 'insert_at_position'.
+ *
+ */
+
+void replace_from_to(char *a, char *b, int from, int to);
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: insert_at_position
+ * Usage: insert_at_position(char *a, char *b, int position)
+ * ---------------------------------------------------------
+ * @brief Inserts a string into another string at a certain position
+ * @param char *a String to be inserted into
+ * @param char *b String to be inserted
+ * @param int position Index to insert in string 'a'
+ * @return void
+ * @exception Exceptions
+ * 	      
+ * String 'b' will be inserted in string 'a' at the index 'position of 'a'.
+ *
+ */
+
+void insert_at_position(char *a, char *b, int position);
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: erase_from_length
+ * Usage: erase_from_length(char *a, int from, int len)
+ * ----------------------------------------------------
+ * @brief char *a
+ * @param char *a Original string
+ * @param int from Start index
+ * @param int len Length of part to erase
+ * @return void
+ * @exception Exceptions
+ * 	      
+ * Erases a part of the original string, limited by the index and the length of
+ * the part to be erased. 
+ *
+ */
+
+void erase_from_length(char *a, int from, int len);
+
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: text_part_from_length
+ * Usage: text_part_from_length(char *a, char *b, int from, int len)
+ * -----------------------------------------------------------------
+ * @brief Saves a substring of a string
+ * @param char *a
+ * @param char *b
+ * @param int from
+ * @parma int len
+ * @return void
+ * @exception Exceptions
+ * 	      
+ * Saves a part of string 'a', limited by an index and the length of the
+ * substring into string 'b'.
+ *
+ */
+
+void text_part_from_length(char *a, char *b, int from, int len);
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: erase_from_to
+ * Usage: erase_from_to(char *a, int from, int to)
+ * -----------------------------------------
+ * @brief Erases a substring in a string
+ * @param char *a
+ * @param int from
+ * @param int to
+ * @return void
+ * @exception Exceptions
+ * 	      
+ * Erases a substring, limited by indices 'from' and 'to' in the original string.
+ *
+ */
+
+void erase_from_to(char *a, int from, int to);
+
+/**
+ * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: text_part_from_to
+ * Usage: text_part_from_to(char *a, char *b, int from, int to)
+ * ------------------------------------------------------------
+ * @brief Saves a substring of a string
+ * @param char *a
+ * @param char *b
+ * @param int from
+ * @param int to
+ * @return void
+ *
+ * Saves the part of a string, limited by indices 'from' and 'to'
+ * to another string 'b'.
+ */
+
+void text_part_from_to(char *a, char *b, int from, int to);
+
+/**
+ * Copyright Oct 2023, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: unspecific_search
+ * Usage: unspecific_search(line, pattern, position)
+ * -------------------------------------------------
+ * @brief Returns an unspecified search term 
+ * @param char *str
+ * @param char *str
+ * @param int
+ * @return char *str
+ *
+ * Examines a line for a pattern and then returns the
+ * term at the given position.
+ */
+
+char* unspecific_search(const char* line, const char* pattern, int position);
+
 /**
  * Copyright May 2021: Georg Pohl, 70174 Stuttgart
  *
