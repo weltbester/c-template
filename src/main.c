@@ -31,13 +31,13 @@
 /* TYPEDEFS, ENUMS, STRUCTS */
 
 /* GLOBAL / EXTERNAL VARIABLES */
-extern int something[11];	/* Size must be declared, except you have a
-				   null-terminated character array */ 
+extern int something[11];       /* Size must be declared, except you have a
+                                   null-terminated character array */ 
 
 non-static something_else;
 
 static another_something;
-	
+
 /* CONSTANTS */
 const double PI = 3.1415926;
  
