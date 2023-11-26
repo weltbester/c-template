@@ -37,7 +37,6 @@
  * string 'a', otherwise if not found it returns -1.
  *
  */
-
 int search_pattern_in_string(char *a, char *b);
 
 /**
@@ -58,7 +57,6 @@ int search_pattern_in_string(char *a, char *b);
  * the already defined functions 'erase_from_length' and 'insert_at_position'.
  *
  */
-
 void replace_from_length(char *a, char *b, int from, int len);
 
 /**
@@ -79,7 +77,6 @@ void replace_from_length(char *a, char *b, int from, int len);
  * the already defined functions 'erase_from_to' and 'insert_at_position'.
  *
  */
-
 void replace_from_to(char *a, char *b, int from, int to);
 
 /**
@@ -98,7 +95,6 @@ void replace_from_to(char *a, char *b, int from, int to);
  * String 'b' will be inserted in string 'a' at the index 'position of 'a'.
  *
  */
-
 void insert_at_position(char *a, char *b, int position);
 
 /**
@@ -118,9 +114,7 @@ void insert_at_position(char *a, char *b, int position);
  * the part to be erased. 
  *
  */
-
 void erase_from_length(char *a, int from, int len);
-
 
 /**
  * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
@@ -140,7 +134,6 @@ void erase_from_length(char *a, int from, int len);
  * substring into string 'b'.
  *
  */
-
 void text_part_from_length(char *a, char *b, int from, int len);
 
 /**
@@ -159,7 +152,6 @@ void text_part_from_length(char *a, char *b, int from, int len);
  * Erases a substring, limited by indices 'from' and 'to' in the original string.
  *
  */
-
 void erase_from_to(char *a, int from, int to);
 
 /**
@@ -178,11 +170,10 @@ void erase_from_to(char *a, int from, int to);
  * Saves the part of a string, limited by indices 'from' and 'to'
  * to another string 'b'.
  */
-
 void text_part_from_to(char *a, char *b, int from, int to);
 
 /**
- * Copyright Oct 2023, Georg Pohl, 70174 Stuttgart
+ * Copyright: October 2023, Georg Pohl, 70174 Stuttgart
  *
  * Function: unspecific_search
  * Usage: unspecific_search(line, pattern, position)
@@ -196,11 +187,10 @@ void text_part_from_to(char *a, char *b, int from, int to);
  * Examines a line for a pattern and then returns the
  * term at the given position.
  */
-
 char* unspecific_search(const char* line, const char* pattern, int position);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright: May 2021, Georg Pohl, 70174 Stuttgart
  *
  * Function: make_string_lwrcase
  * Usage: make_string_lwrcase(str)
@@ -212,11 +202,10 @@ char* unspecific_search(const char* line, const char* pattern, int position);
  * A whole string (as opposed to 'tolower') is
  * converted to lowercase letters, inline.
  */
-
 void make_string_lwrcase(char *str);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright: May 2021, Georg Pohl, 70174 Stuttgart
  *
  * Function: make_string_uprcase
  * Usage: make_string_uprcase(str)
@@ -228,11 +217,10 @@ void make_string_lwrcase(char *str);
  * A whole string (as opposed to 'toupper') is
  * converted to uppercase letters, inline.
  */
-
 void make_string_uprcase(char *str);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright: May 2021, Georg Pohl, 70174 Stuttgart
  *
  * Function: delete_entries_from_file
  * Usage: delete_entries_from_file(filename)
@@ -251,11 +239,10 @@ void make_string_uprcase(char *str);
  * temp-file is renamed to the original filename,
  * which contains only the leftover entries.
  */
-
 void delete_entries_from_file(char *fn);
 
 /**
- * Copyright Eric S. Roberts
+ * Copyright: Eric S. Roberts
  *
  * Function:findInSortedArray
  * Usage: int index = findInSortedArray(key, arr, n);
@@ -277,11 +264,10 @@ void delete_entries_from_file(char *fn);
  * real work is done by the more general binary search
  * function.
  */
-
 int findInSortedArray(int key, int *arr, int n);
 
 /**
- * Copyright Eric S. Roberts
+ * Copyright: Eric S. Roberts
  *
  * Function: binarysearch
  * Usage: int index = binarysearch(key, arr, p1, p2);
@@ -292,11 +278,10 @@ int findInSortedArray(int key, int *arr, int n);
  * The function returns the index of a matching element,
  * or -1 if no match is found.
  */
-
 int binarysearch(int key, int *arr, int p1, int p2);
 
 /**
- * Copyright Eric S. Roberts
+ * Copyright: Eric S. Roberts
  *
  * Function: shell_sort(int *arr)
  * Usage: shell_sort(arr[])
@@ -311,11 +296,10 @@ int binarysearch(int key, int *arr, int p1, int p2);
  * The function returns the no. of swaps needed
  * to sort the whole array.
  */
-
 int shell_sort(int *array, int n);
 
 /**
- * Copyright Eric S. Roberts
+ * Copyright: Eric S. Roberts
  *
  * Function: insertion_sort(int *arr)
  * Usage: insertion_sort(arr[])
@@ -330,11 +314,10 @@ int shell_sort(int *array, int n);
  * The function returns the no. of swaps needed
  * to sort the whole array.
  */
-
 int insertion_sort(int *array, int n);
 
 /**
- * Copyright Eric S. Roberts
+ * Copyright: Eric S. Roberts
  *
  * Function: bubble_sort(int *arr, int n)
  * Usage: bubble_sort(arr[], n)
@@ -349,11 +332,10 @@ int insertion_sort(int *array, int n);
  * The function returns the no. of swaps needed
  * to sort the whole array.
  */
-
 int bubble_sort(int *array, int n);
 
 /**
- * Copyright Eric S. Roberts
+ * Copyright: Eric S. Roberts
  *
  * Function: selection_sort
  * Usage: int cycles = selection_sort(*arr, int n)
@@ -368,11 +350,10 @@ int bubble_sort(int *array, int n);
  * The function returns the no. of swaps needed
  * to sort the whole array.
  */
-
 int selection_sort(int *array, int n);
 
 /**
- * Copyright May 2021: Georg Pohl, 70174 Stuttgart
+ * Copyright: May 2021, Georg Pohl, 70174 Stuttgart
  *
  * Function: deleteFilesByAge(char *folder, int period)
  * Usage: deleteFilesByAge("folder/to/check/", 30)
@@ -390,11 +371,10 @@ int selection_sort(int *array, int n);
  * 
  * This function does not work on Windows Systems. 
  */
-
 void deleteFilesByAge(const char folder[], int period);
 
 /**
- * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: August 2020, Georg Pohl, 70174 Stuttgart
  *
  * Function: printIntVector
  * Usage: printIntVector(int *vec, int n)
@@ -403,11 +383,10 @@ void deleteFilesByAge(const char folder[], int period);
  * form index 0 to the end.
  *
  */
-
 void printIntVector(const int *vec, int n);
 
 /**
- * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: August 2020, Georg Pohl, 70174 Stuttgart
  *
  * Function: printDoubleVector
  * Usage: printDoubleVector(int *vec, int n)
@@ -416,11 +395,10 @@ void printIntVector(const int *vec, int n);
  * form index 0 to the end.
  *
  */
-
 void printDoubleVector(const double *vec, int n);
 
 /**
- * Copyright February 2021: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: February 2021, Georg Pohl, 70174 Stuttgart
  *
  * Function: dump_buffer()
  * Usage: dump_buffer(stdin);
@@ -428,22 +406,20 @@ void printDoubleVector(const double *vec, int n);
  * If you want to empty an input buffer after reading input via 'scanf',
  * use this function.
  */
-
 void dump_buffer(FILE *fp);
 
 /**
- * Copyright February 2021: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: February 2021, Georg Pohl, 70174 Stuttgart
  *
  * Function: killNL()
  * Usage: killNL();
  * ----------------------------------------------------------------------
  * Deletes unwanted newline character ('\n') from a string.
  */
-
 void killNL(char *str);
 
 /**
- * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: April 2020, Georg Pohl, 70174 Stuttgart
  *
  * Function: periodToMinute()
  * Usage: int minutes = periodToMinute(const char *periodUnit);
@@ -452,11 +428,10 @@ void killNL(char *str);
  * a string, reverse calculates it to the smallest unit and returns
  * 'minutes' as an integer. 
  */
-
 int periodToMinute(char *periodUnit);
 
 /**
- * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: April 2020, Georg Pohl, 70174 Stuttgart
  *
  * Function: uptime()
  * Usage: int days = uptime(const char *line);
@@ -466,11 +441,10 @@ int periodToMinute(char *periodUnit);
  * calculates and returns the summa summarum in days for the relevant
  * router.
  */
-
 int uptime(const char *line);
 
 /**
- * Copyright April 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: April 2020, Georg Pohl, 70174 Stuttgart
  *
  * Function: unspecificSearch()
  * Usage: char *ptr = unspecificSearch(char *, int, const char *, const char *, const char *)
@@ -479,11 +453,10 @@ int uptime(const char *line);
  * it reaches the search pattern(s). From this line the term found at position 'offset' is
  * returned; where offset 1 finds the first word, etc.
  */
-
 char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, const char *p3);
 
 /**
- * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: August 2020, Georg Pohl, 70174 Stuttgart,
  *
  * C++ Function: deleteNetMask
  * Usage: string netAddr = deleteNetMask(const string)
@@ -498,7 +471,7 @@ char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, con
 // std::string deleteNetMask(const std::string ipAddr);
 
 /**
- * Copyright August 2020: Georg Pohl, 70174 Stuttgart, Germany
+ * Copyright: August 2020, Georg Pohl, 70174 Stuttgart
  *
  * C++ Function: incrLastOctett
  * Usage: string nextAddr = incrLastOctett(const string)
