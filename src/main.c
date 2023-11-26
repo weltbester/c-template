@@ -47,9 +47,9 @@ void my_function(void);
 /* Always use Prototypes and the 'void' keyword */
 /* Put like functions together or apply alphabetical order */
 
+int main() {
 
-int main(void) {
-  
-  return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
+
 /* FUNCTIONS */
