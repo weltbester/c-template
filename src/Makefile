@@ -10,28 +10,28 @@ DBGOBJS=$(patsubst %.c,%.dbg.o,$(SRCS))
 .PHONY: clean cleaner backup  doc depend all
 all: myProgram myProgram-debug
 myProgram: $(OBJS)
-        gcc -o $@ -O3 $(OBJS)
+	gcc -o $@ -O3 $(OBJS)
 myProgram-debug: $(DBGOBJS)
-        gcc -o $@ -ggdb3 $(DBGOBJS)
+	gcc -o $@ -ggdb3 $(DBGOBJS)
 %.dbg.o: %.c
-        gcc $(DBGFLAGS) -c -o $@ $<
+	gcc $(DBGFLAGS) -c -o $@ $<
 clean:
         #rm -f myProgram myProgram-debug *.o *.c~ *.h~
-        -$(RM) *.o *#* *~
-        find . -type f | xargs touch
-        rm -rf $(OBJS)
+	-$(RM) *.o *#* *~
+	find . -type f | xargs touch
+	rm -rf $(OBJS)
 cleaner: clean
-        rm myProgram myProgram-debug
+	rm myProgram myProgram-debug
 cleanest: clean
-        rm *.c *.h Makefile
+	rm *.c *.h Makefile
 doc:
-        doxygen
+	doxygen
 backup: %.c %.h Makefile
-        cp $? /Volumes/NITRO-NV\ 1/Skripte/Transfer
-        touch backup
+	cp $? /Volumes/NITRO-NV\ 1/Skripte/Transfer
+	touch backup
 depend:
-        makedepend $(SRCS)
-        makedepend -a -o .dbg.o  $(SRCS)
+	makedepend $(SRCS)
+	makedepend -a -o .dbg.o  $(SRCS)
 # DO NOT DELETE
 anotherFile.o: anotherHeader.h someHeader.h
 oneFile.o: oneHeader.h someHeader.h
