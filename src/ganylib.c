@@ -31,32 +31,49 @@
 /**
  * Implementation notes: search_pattern_in_string
  * ----------------------------------------------
- * This function implements the 'replace_from_lenght' function.
+ * Searches for a pattern in a string and returns the position of the first
+ * occurrence.
+ * @param source_string The string to search in.
+ * @param search_pattern The pattern to search for.
+ * @return The position of the first occurrence of search_pattern in source_string,
+ * ERROR_PATTERN_NOT_FOUND if the pattern was not found, or ERROR_NULL_POINTER if
+ * either of the input pointers is NULL.
  */
 
-int search_pattern_in_string(char *a, char *b) {
-  int pos = -1;
-  int a_len = (int)strlen(a), b_len = (int)strlen(b);
-  if (b_len > a_len) {
-    return -1;
+#define ERROR_NULL_POINTER -2
+#define ERROR_PATTERN_NOT_FOUND -1
+
+int search_pattern_in_string(char *source_string, char *search_pattern) {
+  if (source_string == NULL || search_pattern == NULL) {
+    return ERROR_NULL_POINTER;
   }
-  /* Look for the first of the beginnin of 'b' and somewhere in 'a' */
-  for (size_t i = 0; i < a_len; ++i) {
-    if (a[i] == b[0]) {
-      pos = i;
-      /* If beginning of 'b' is found, compare the rest of 'b'. */
-      for (size_t k = 0; k < b_len; ++k) {
-	if (a[i + k] != b[k]) {
-	  pos = -1;
-	  break;
-	}
+
+  int source_length = (int)strlen(source_string);
+  int pattern_length = (int)strlen(search_pattern);
+
+  if (pattern_length > source_length) {
+    return ERROR_PATTERN_NOT_FOUND;
+  }
+
+  // Search through the source string for the search pattern
+  for (size_t i = 0; i <= source_length - pattern_length; ++i) {
+    size_t j;
+
+    // Compare the search pattern with the current substring of source_string
+    for (j = 0; j < pattern_length; ++j) {
+      if (source_string[i + j] != search_pattern[j]) {
+        break;
       }
     }
-    if (pos != -1) {
-      break;
+
+    // If the entire search pattern was found, return the current position
+    if (j == pattern_length) {
+      return i;
     }
   }
-  return pos;
+
+  // If the search pattern was not found, return an error code
+  return ERROR_PATTERN_NOT_FOUND;
 }
 
 /**
