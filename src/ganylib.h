@@ -44,7 +44,7 @@ int search_pattern_in_string(char *a, char *b);
  *
  * Function: replace_from_length
  * Usage: replace_from_length(char *a, char *b, int from, int len)
- * -----------------------------------------------------------
+ * ---------------------------------------------------------------
  * @brief Replaces part of 'a' with 'b'
  * @param char *a Replacement takes place here
  * @param char *b String to be inserted
