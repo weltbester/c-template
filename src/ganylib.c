@@ -27,6 +27,7 @@
 #include <libgen.h>
 #include "ganylib.h"
 
+
 /**
  * Implementation notes: search_pattern_in_string
  * ----------------------------------------------
@@ -39,9 +40,11 @@ int search_pattern_in_string(char *a, char *b) {
   if (b_len > a_len) {
     return -1;
   }
+  /* Look for the first of the beginnin of 'b' and somewhere in 'a' */
   for (size_t i = 0; i < a_len; ++i) {
     if (a[i] == b[0]) {
       pos = i;
+      /* If beginning of 'b' is found, compare the rest of 'b'. */
       for (size_t k = 0; k < b_len; ++k) {
 	if (a[i + k] != b[k]) {
 	  pos = -1;
