@@ -1,4 +1,4 @@
-/** @file funktionsfile.c
+/** @file function.c
  *  @brief Short, generic description about the function
  *
  *  @author Georg Pohl
