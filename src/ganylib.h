@@ -11,15 +11,25 @@
 #ifndef GANYLIB_H_
 #define GANYLIB_H_
 
-// For periodToMinute()
-#define MINUTE  1
-#define HOUR    (MINUTE * 60)
-#define DAY     (HOUR * 24)
-#define WEEK    (DAY * 7)
-#define YEAR    (WEEK * 52)
-
 #include <stdio.h>
 #include <string.h>
+
+ /**
+  * Copyright: Februar 2024, Georg Pohl, 70174 Stuttgart
+  *
+  * Function: extract_router_uptime
+  * Usage: extract_router_uptime("line");
+  * -----------------------------------------
+  * @brief Extracts the uptime of a router
+  * @param line of 'show version' output
+  * @return int of the uptime in days
+  * -----------------------------------------
+  * @details This function extracts the uptime
+  * of a router from the output of 'show version'
+  * and returns it in days.
+  */
+
+int extract_router_uptime(char* line);
 
 /**
  * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
@@ -417,31 +427,6 @@ void dump_buffer(FILE *fp);
  * Deletes unwanted newline character ('\n') from a string.
  */
 void killNL(char *str);
-
-/**
- * Copyright: April 2020, Georg Pohl, 70174 Stuttgart
- *
- * Function: periodToMinute()
- * Usage: int minutes = periodToMinute(const char *periodUnit);
- * -------------------------------------------
- * 'periodToMinute' takes time periods, like 'year(s)', 'week(s) etc. as
- * a string, reverse calculates it to the smallest unit and returns
- * 'minutes' as an integer. 
- */
-int periodToMinute(char *periodUnit);
-
-/**
- * Copyright: April 2020, Georg Pohl, 70174 Stuttgart
- *
- * Function: uptime()
- * Usage: int days = uptime(const char *line);
- * -------------------------------------------
- * 'uptime' takes a string, extracts relevant information about
- * the years, weeks, days etc. a router is running and finally
- * calculates and returns the summa summarum in days for the relevant
- * router.
- */
-int uptime(const char *line);
 
 /**
  * Copyright: April 2020, Georg Pohl, 70174 Stuttgart
