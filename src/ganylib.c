@@ -593,62 +593,32 @@ void killNL(char *str) {
 }
 
 /*
- * Implementation notes: periodToMinute
- * ------------------------------------
- * The function takes a string with a term like "year(s)", "week(s)" etc.
- * and returns the amount in minutes, for later calculation.
- */
-
-int periodToMinute(char *periodUnit) {
-  if (strstr(periodUnit, "year") != NULL) {
-    return YEAR;
-  }
-  if (strstr(periodUnit, "week") != NULL) {
-    return WEEK;
-  }
-  if (strstr(periodUnit, "day") != NULL) {
-    return DAY;
-  }
-  if (strstr(periodUnit, "hour") != NULL) {
-    return HOUR;
-  }
-  return 1;
-}
-
-/*
  * Implementation notes: uptime
  * ----------------------------
- * The function copies 'line' in a new working string (lineCopy) for
- * edititng. This string is edited, until only the relevant data is leftover.
- * 
- * 1. Before edititing: "System uptime is, 1 years 51 weeks 6 days 23 hours 
- * 59 minutes"
- * 2. After editing: "1 years 51 weeks 6 days 23 hours 59 minutes"
+ * The function extracts the numbers, correlates them to the equivalent time
+ * period, converts this figures to days and returns the accumulated number
+ * of days as uptime for the router.
  *
- * This part is then tokenized and every time the loop is passed, one integer 
- * and the correspondint time period is extracted. With the 'periodToMinute'
- * function the duration in minutes is calculated and added to 'totalMinutes'.
- * This is done for all tuples in the string.
- * The function is also working if there are tuples missing, like in:
- *
- * "System uptime is,  3 days 8 hours 2 minutes"
+ * This example: "1 years 2 weeks 6 days 3 hours 59 minutes" returns 380 days.
  */
 
-int uptime(const char *line) {
-  int days = 0;
-  int totalMinutes = 0;
-  int timePeriod;
-  char *lineCopy = malloc(strlen(line));
-  memcpy(lineCopy, line, strlen(line));
-  lineCopy = strchr(lineCopy, ',') + 2;
-  char *ndx = strtok(lineCopy, " ");
-  while (ndx) {
-    timePeriod = atoi(ndx);
-    totalMinutes += timePeriod * periodToMinute(strtok(NULL, " "));
-    ndx = strtok(NULL, " ");
-  }
-  days =  totalMinutes / 60 / 24;
-  return days;
+int extract_router_uptime(char* line) {
+  int years = 0, weeks = 0, days = 0, total_uptime = 0;
+    char* token = strtok(line, " ,");
+    int last_number = 0;
+    while (token != NULL) {
+        if (strcmp(token, "year") == 0 || strcmp(token, "years") == 0) {
+            years = last_number;
+        } else if (strcmp(token, "week") == 0 || strcmp(token, "weeks") == 0) {
+            weeks = last_number;
+        } else if (strcmp(token, "day") == 0 || strcmp(token, "days") == 0) {
+            days = last_number;
+        } else {
+            last_number = atoi(token);
+        }
+        token = strtok(NULL, " ,");
+    }
+    return years * 365 + weeks * 7 + days + 1; /* One day is added for the missing hours */
 }
 
 /**

@@ -1,4 +1,4 @@
-/** @file funktionsfile.h
+/** @file function.h
  *  @brief Short, generic description about the function
  *
  *  @author Georg Pohl
