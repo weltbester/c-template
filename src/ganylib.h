@@ -23,7 +23,6 @@
   * @brief Extracts the uptime of a router
   * @param line of 'show version' output
   * @return int of the uptime in days
-  * -----------------------------------------
   * @details This function extracts the uptime of a router from the
   * output of 'show version' and returns it in days.
   */
