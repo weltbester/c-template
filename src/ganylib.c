@@ -477,12 +477,14 @@ int bubble_sort(int *array, int n) {
 /**
  * Implementation notes: selection_sort
  * ------------------------------------
- * This implementation uses an algorithm called selection sort, which can be
- * described as follows. With your left hand (lh), point at each element in
- * the vector in turn, starting at index 0. At each step in the cycle:
+ * This implementation uses an algorithm called selection sort, which
+ * can be described as follows. With your left hand (lh), point at
+ * each element in the vector in turn, starting at index 0. At each
+ * step in the cycle:
  *
- * 1. Find the smalles element in the range between your left hand and the
- * end of the vector, and point at that element with your right hand (rh).
+ * 1. Find the smalles element in the range between your left hand and
+ * the end of the vector, and point at that element with your right
+ * hand (rh).
  *
  * 2. Move that element into its correct positioning by exchanging the
  * elements indicated by your left and right hands. (This explanation
@@ -514,10 +516,9 @@ int selection_sort(int *array, int n) {
  * File: deleteFilesByAge.c
  * Implementation notes: deleteFilesByAge()
  * ----------------------------------------
- * This function makes use of the 'system' command,
- * because the goal is achieved much easier than
- * with the Non-ANSI-C 'mtime' attribute of the 'stat'
- * function.
+ * This function makes use of the 'system' command, because the goal
+ * is achieved much easier than with the Non-ANSI-C 'mtime' attribute
+ * of the 'stat' function.
  */
 
 void deleteFilesByAge(const char folder[], int period) {
@@ -595,11 +596,12 @@ void killNL(char *str) {
 /*
  * Implementation notes: uptime
  * ----------------------------
- * The function extracts the numbers, correlates them to the equivalent time
- * period, converts this figures to days and returns the accumulated number
- * of days as uptime for the router.
+ * The function extracts the numbers, correlates them to the
+ * equivalent time period, converts this figures to days and returns
+ * the accumulated number of days as uptime for the router.
  *
- * This example: "1 years 2 weeks 6 days 3 hours 59 minutes" returns 380 days.
+ * This example: "1 years 2 weeks 6 days 3 hours 59 minutes" returns
+ * 380 days.
  */
 
 int extract_router_uptime(char* line) {
@@ -624,13 +626,13 @@ int extract_router_uptime(char* line) {
 /**
  *  Implementation notes: unspecificSearch
  *  --------------------------------------
- *  This search function takes a file stream as input. It reads
- *  line by line until it hits the pattern(s).
- *  This line is then tokenized and the tokens are counted until
- *  'cntr' is equal to 'offset'; which is the n-th word the user
- *  is looking for. You can provide upto three search strings
- *  (p1, p2, p3), where the last two are somewhat optional, but
- *  then an empty string ("") has to be provided.
+ *  This search function takes a file stream as input. It reads line
+ *  by line until it hits the pattern(s).  This line is then tokenized
+ *  and the tokens are counted until 'cntr' is equal to 'offset';
+ *  which is the n-th word the user is looking for. You can provide
+ *  upto three search strings (p1, p2, p3), where the last two are
+ *  somewhat optional, but then an empty string ("") has to be
+ *  provided.
  *  
  *  Example: Search for of Copyright-year in this paragraph would
  *  result in:
@@ -639,10 +641,10 @@ int extract_router_uptime(char* line) {
  *
  *  which returns: 2020:
  *  
- *  Because this function is called for several lookups
- *  in the same (one-time opened) file, the file
- *  read-pointer is rewinded before new lookups, so that
- *  the search can start from the beginning of the file. 
+ *  Because this function is called for several lookups in the same
+ *  (one-time opened) file, the file read-pointer is rewinded before
+ *  new lookups, so that the search can start from the beginning of
+ *  the file.
  *
  *  Copyright (C) Apr. 2020: Georg Pohl, 70174 Stuttgart
  */
@@ -689,8 +691,7 @@ char *unspecificSearch(char *fn, int offset, const char *p1,
  * C++ Function: deleteNetMask
  * Usage: string netAddr = deleteNetMask(const string)
  * --------------------_------------------------------
- * This function implements the interface to
- * deleteNetMask.
+ * This function implements the interface to deleteNetMask.
  * 
  */
 
@@ -712,15 +713,13 @@ char *unspecificSearch(char *fn, int offset, const char *p1,
  * C++ Function: incrLastOctett
  * Usage: string nextAddr = incrLastOctett(const string)
  * -----------------------------------------------------
- * To make a just somewhat reliable function, in the
- * input IPv4 Address the last octett (searching for the
- * last '.') is being isolated and translated from a
- * string to an integer; which can be corrctly
- * incremented. Then everything is re-translated into a
- * string and concatenated to the original string at the
- * right place.
- * If there's no dot ('.'), the function returns the
- * original IP-Address and the Postfix " Check address!".
+ * To make a just somewhat reliable function, in the input IPv4
+ * Address the last octett (searching for the last '.') is being
+ * isolated and translated from a string to an integer; which can be
+ * corrctly incremented. Then everything is re-translated into a
+ * string and concatenated to the original string at the right place.
+ * If there's no dot ('.'), the function returns the original
+ * IP-Address and the Postfix " Check address!".
  */
 
 /* string incrLastOctett(const string ipAddr) { */

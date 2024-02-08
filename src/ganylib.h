@@ -3,8 +3,8 @@
  * ---------------
  * This file defines functions needed for everyday networking use.
  * 
- * Here, general information about the usage is provided. If you're
- * a programmer, have a look at the relevant implementation file for
+ * Here, general information about the usage is provided. If you're a
+ * programmer, have a look at the relevant implementation file for
  * more details.
  */
 
@@ -24,9 +24,8 @@
   * @param line of 'show version' output
   * @return int of the uptime in days
   * -----------------------------------------
-  * @details This function extracts the uptime
-  * of a router from the output of 'show version'
-  * and returns it in days.
+  * @details This function extracts the uptime of a router from the
+  * output of 'show version' and returns it in days.
   */
 
 int extract_router_uptime(char* line);
@@ -43,8 +42,8 @@ int extract_router_uptime(char* line);
  * @return int index Position where string is found in 'a'
  * @exception Exceptions
  * 	      
- * The funktion returns the index where the pattern is found in the original
- * string 'a', otherwise if not found it returns -1.
+ * The funktion returns the index where the pattern is found in the
+ * original string 'a', otherwise if not found it returns -1.
  *
  */
 int search_pattern_in_string(char *a, char *b);
@@ -63,8 +62,9 @@ int search_pattern_in_string(char *a, char *b);
  * @return void
  * @exception Exceptions
  * 	      
- * This function replaces a substring 'b' in the original string 'a'. It uses
- * the already defined functions 'erase_from_length' and 'insert_at_position'.
+ * This function replaces a substring 'b' in the original string
+ * 'a'. It uses the already defined functions 'erase_from_length' and
+ * 'insert_at_position'.
  *
  */
 void replace_from_length(char *a, char *b, int from, int len);
@@ -83,8 +83,9 @@ void replace_from_length(char *a, char *b, int from, int len);
  * @return void
  * @exception Exceptions
  * 	      
- * This function replaces a substring 'b' in the original string 'a'. It uses
- * the already defined functions 'erase_from_to' and 'insert_at_position'.
+ * This function replaces a substring 'b' in the original string
+ * 'a'. It uses the already defined functions 'erase_from_to' and
+ * 'insert_at_position'.
  *
  */
 void replace_from_to(char *a, char *b, int from, int to);
@@ -102,7 +103,8 @@ void replace_from_to(char *a, char *b, int from, int to);
  * @return void
  * @exception Exceptions
  * 	      
- * String 'b' will be inserted in string 'a' at the index 'position of 'a'.
+ * String 'b' will be inserted in string 'a' at the index 'position of
+ * 'a'.
  *
  */
 void insert_at_position(char *a, char *b, int position);
@@ -120,8 +122,8 @@ void insert_at_position(char *a, char *b, int position);
  * @return void
  * @exception Exceptions
  * 	      
- * Erases a part of the original string, limited by the index and the length of
- * the part to be erased. 
+ * Erases a part of the original string, limited by the index and the
+ * length of the part to be erased.
  *
  */
 void erase_from_length(char *a, int from, int len);
@@ -140,8 +142,8 @@ void erase_from_length(char *a, int from, int len);
  * @return void
  * @exception Exceptions
  * 	      
- * Saves a part of string 'a', limited by an index and the length of the
- * substring into string 'b'.
+ * Saves a part of string 'a', limited by an index and the length of
+ * the substring into string 'b'.
  *
  */
 void text_part_from_length(char *a, char *b, int from, int len);
@@ -177,8 +179,8 @@ void erase_from_to(char *a, int from, int to);
  * @param int to
  * @return void
  *
- * Saves the part of a string, limited by indices 'from' and 'to'
- * to another string 'b'.
+ * Saves the part of a string, limited by indices 'from' and 'to' to
+ * another string 'b'.
  */
 void text_part_from_to(char *a, char *b, int from, int to);
 
@@ -194,8 +196,8 @@ void text_part_from_to(char *a, char *b, int from, int to);
  * @param int
  * @return char *str
  *
- * Examines a line for a pattern and then returns the
- * term at the given position.
+ * Examines a line for a pattern and then returns the term at the
+ * given position.
  */
 char* unspecific_search(const char* line, const char* pattern, int position);
 
@@ -209,8 +211,8 @@ char* unspecific_search(const char* line, const char* pattern, int position);
  * @param char *str
  * @return void
  *
- * A whole string (as opposed to 'tolower') is
- * converted to lowercase letters, inline.
+ * A whole string (as opposed to 'tolower') is converted to lowercase
+ * letters, inline.
  */
 void make_string_lwrcase(char *str);
 
@@ -224,8 +226,8 @@ void make_string_lwrcase(char *str);
  * @param char *str
  * @return void
  *
- * A whole string (as opposed to 'toupper') is
- * converted to uppercase letters, inline.
+ * A whole string (as opposed to 'toupper') is converted to uppercase
+ * letters, inline.
  */
 void make_string_uprcase(char *str);
 
@@ -239,15 +241,13 @@ void make_string_uprcase(char *str);
  * @param char *fn
  * @return void
  *
- * The function can be used to delete random entries
- * from a given file, line by line. Therefore the
- * user has to enter the words/terms to be deleted.
- * Input is converted to uppercase.
- * Then the original file is read line by line and
- * every term that is  n o t  mentioned from the user
- * is written in a temporay file. At the end the
- * temp-file is renamed to the original filename,
- * which contains only the leftover entries.
+ * The function can be used to delete random entries from a given
+ * file, line by line. Therefore the user has to enter the words/terms
+ * to be deleted.  Input is converted to uppercase.  Then the original
+ * file is read line by line and every term that is n o t mentioned
+ * from the user is written in a temporay file. At the end the
+ * temp-file is renamed to the original filename, which contains only
+ * the leftover entries.
  */
 void delete_entries_from_file(char *fn);
 
@@ -263,16 +263,14 @@ void delete_entries_from_file(char *fn);
  * @param int n
  * @return int index
  *
- * Searches for the specified key in the array *arr,
- * which must be sorted in lexicographic (character code)
- * order. If the key is found, the function returns the
- * index in the vector at which that key appers. (If the
- * key appears more than once in the array, any of the
- * matching indices may be returned). If the key does not
- * exist in the array, the function returns -1. This
- * implementation is simply a wrapper function; all of
- * real work is done by the more general binary search
- * function.
+ * Searches for the specified key in the array *arr, which must be
+ * sorted in lexicographic (character code) order. If the key is
+ * found, the function returns the index in the vector at which that
+ * key appers. (If the key appears more than once in the array, any of
+ * the matching indices may be returned). If the key does not exist in
+ * the array, the function returns -1. This implementation is simply a
+ * wrapper function; all of real work is done by the more general
+ * binary search function.
  */
 int findInSortedArray(int key, int *arr, int n);
 
@@ -282,11 +280,9 @@ int findInSortedArray(int key, int *arr, int n);
  * Function: binarysearch
  * Usage: int index = binarysearch(key, arr, p1, p2);
  * --------------------------------------------------
- * @brief 
- * Searches for the specific key in the arrar *arr,
- * looking only at indices between p1 and p2, inclusive.
- * The function returns the index of a matching element,
- * or -1 if no match is found.
+ * @brief Searches for the specific key in the arrar *arr, looking only
+ * at indices between p1 and p2, inclusive.  The function returns the
+ * index of a matching element, or -1 if no match is found.
  */
 int binarysearch(int key, int *arr, int p1, int p2);
 
@@ -301,10 +297,9 @@ int binarysearch(int key, int *arr, int p1, int p2);
  * @param int n
  * @return int swaps Number of swaps needed 
  *
- * This function sorts an integer array in increasing
- * order by applying the shell-sort algorithm.
- * The function returns the no. of swaps needed
- * to sort the whole array.
+ * This function sorts an integer array in increasing order by
+ * applying the shell-sort algorithm.  The function returns the no. of
+ * swaps needed to sort the whole array.
  */
 int shell_sort(int *array, int n);
 
@@ -319,10 +314,9 @@ int shell_sort(int *array, int n);
  * @param int n
  * @return int swaps Number of swaps needed 
  *
- * This function sorts an integer array in increasing
- * order by applying the insertion-sort algorithm.
- * The function returns the no. of swaps needed
- * to sort the whole array.
+ * This function sorts an integer array in increasing order by
+ * applying the insertion-sort algorithm.  The function returns the
+ * no. of swaps needed to sort the whole array.
  */
 int insertion_sort(int *array, int n);
 
@@ -337,10 +331,9 @@ int insertion_sort(int *array, int n);
  * @param int n
  * @return int swaps Number of swaps needed 
  *
- * This function sorts an integer array in increasing
- * order by applying the bubble-sort algorithm.
- * The function returns the no. of swaps needed
- * to sort the whole array.
+ * This function sorts an integer array in increasing order by
+ * applying the bubble-sort algorithm.  The function returns the
+ * no. of swaps needed to sort the whole array.
  */
 int bubble_sort(int *array, int n);
 
@@ -355,10 +348,9 @@ int bubble_sort(int *array, int n);
  * @param int n
  * @return int swaps Number of swaps needed 
  *
- * This function sorts an integer array in increasing
- * order by applying the selection-sort algorithm.
- * The function returns the no. of swaps needed
- * to sort the whole array.
+ * This function sorts an integer array in increasing order by
+ * applying the selection-sort algorithm.  The function returns the
+ * no. of swaps needed to sort the whole array.
  */
 int selection_sort(int *array, int n);
 
@@ -373,11 +365,10 @@ int selection_sort(int *array, int n);
  * @param int period
  * @return void
  *
- * This is a function to free folders from old and
- * unneeded files. Therefore it checks all files in
- * a given folder.
- * If a file is  o l d e r  than the given period, these file are going
- * to be deleted.
+ * This is a function to free folders from old and unneeded
+ * files. Therefore it checks all files in a given folder.  If a file
+ * is o l d e r than the given period, these file are going to be
+ * deleted.
  * 
  * This function does not work on Windows Systems. 
  */
@@ -398,11 +389,9 @@ void printIntVector(const int *vec, int n);
 /**
  * Copyright: August 2020, Georg Pohl, 70174 Stuttgart
  *
- * Function: printDoubleVector
- * Usage: printDoubleVector(int *vec, int n)
- * -----------------------------------------
- * Prints values of a double vector starting
- * form index 0 to the end.
+ * Function: printDoubleVector Usage: printDoubleVector(int *vec, int
+ * n) ----------------------------------------- Prints values of a
+ * double vector starting form index 0 to the end.
  *
  */
 void printDoubleVector(const double *vec, int n);
@@ -413,8 +402,8 @@ void printDoubleVector(const double *vec, int n);
  * Function: dump_buffer()
  * Usage: dump_buffer(stdin);
  * ----------------------------------------------------------------------
- * If you want to empty an input buffer after reading input via 'scanf',
- * use this function.
+ * If you want to empty an input buffer after reading input via
+ * 'scanf', use this function.
  */
 void dump_buffer(FILE *fp);
 
@@ -434,9 +423,10 @@ void killNL(char *str);
  * Function: unspecificSearch()
  * Usage: char *ptr = unspecificSearch(char *, int, const char *, const char *, const char *)
  * ------------------------------------------------------------------------------------------
- * This function opens a filestream from a given filename 'fn', reads it  line by line until
- * it reaches the search pattern(s). From this line the term found at position 'offset' is
- * returned; where offset 1 finds the first word, etc.
+ * This function opens a filestream from a given filename 'fn', reads
+ * it line by line until it reaches the search pattern(s). From this
+ * line the term found at position 'offset' is returned; where offset
+ * 1 finds the first word, etc.
  */
 char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, const char *p3);
 
@@ -446,9 +436,8 @@ char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, con
  * C++ Function: deleteNetMask
  * Usage: string netAddr = deleteNetMask(const string)
  * --------------------_------------------------------
- * Deletes the Postfix of the Netmaks from a given IPv4
- * Address and returns the pure Network Address to the
- * caller. For example:
+ * Deletes the Postfix of the Netmaks from a given IPv4 Address and
+ * returns the pure Network Address to the caller. For example:
  *
  * deleteNetMask("192.168.1.0/24") returns "192.168.1.0"
  * 
@@ -461,9 +450,8 @@ char *unspecificSearch(char *fn, int offset, const char *p1, const char *p2, con
  * C++ Function: incrLastOctett
  * Usage: string nextAddr = incrLastOctett(const string)
  * -----------------------------------------------------
- * Increases a given IPv4 Network Adress' (without netmask)
- * Hostpart by 1, to get a pingeable network address. For
- * example:
+ * Increases a given IPv4 Network Adress' (without netmask) Hostpart
+ * by 1, to get a pingeable network address. For example:
  *
  * incrLastOctett("192.168.1.19") returns "192.168.1.20"
  *
