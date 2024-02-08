@@ -15,7 +15,7 @@
  *  Here is the implementation of ganylib.h
  *  with several useful generic functions. 
  *
- *  Copyright (C) Apr. 2020: Georg Pohl, 70174 Stuttgart
+ *  Copyright (C) 2024: Georg Pohl, 70174 Stuttgart
  */
 
 #define _GNU_SOURCE     /* for getline(), Non-ANSI */

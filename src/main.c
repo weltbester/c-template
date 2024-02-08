@@ -18,7 +18,7 @@
  *  the corner cases and what problems
  *  can arise due to wrong usage.
  *
- *  Copyright (C) Jan. 2021: Georg Pohl, 70174 Stuttgart
+ *  Copyright (C) 2024: Georg Pohl, 70174 Stuttgart
  */
 
 

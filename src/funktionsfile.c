@@ -15,7 +15,7 @@
  *  Detailed description about the
  *  implementation, not about the usage.
  *
- *  Copyright (C) Jan. 2021: Georg Pohl, 70174 Stuttgart
+ *  Copyright (C) 2024: Georg Pohl, 70174 Stuttgart
  */
 
 #include <stdio.h>
