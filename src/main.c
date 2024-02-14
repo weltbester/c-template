@@ -12,7 +12,6 @@
  *  Last change: 13-02-2024
  *
  *  -------------------------------------
- *
  *  Here you can describe in detail how
  *  the implementation is done, what are
  *  the corner cases and what problems
