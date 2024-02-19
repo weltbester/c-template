@@ -13,8 +13,38 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
 
- /**
+/**
+ * Copyright: Februar 2024, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: device_is_reachable
+ * Usage: device_is_reachable(hostname)
+ * ------------------------------------
+ * @brief Checks if a device is reachable
+ * @param char *hostname
+ * @return bool
+ * @details This function checks if a device is reachable by pinging
+ * it once. It returns true if the device is reachable, otherwise
+ * false.
+ */
+bool device_is_reachable(char *hostname);
+
+int main(int argc, char *argv[]) {
+  if (argc != 2) {
+    printf("Usage: %s <hostname>\n", argv[0]);
+    return 1;
+  }
+  if (!device_is_reachable(argv[1])) {
+    printf("Gerät nicht erreichbar! Richtiger Hostname?\n")
+    return EXIT_FAILURE;
+  }
+  
+  return 0;
+}
+
+/**
   * Copyright: Februar 2024, Georg Pohl, 70174 Stuttgart
   *
   * Function: extract_router_uptime

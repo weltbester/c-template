@@ -27,15 +27,29 @@
 #include <libgen.h>
 #include "ganylib.h"
 
+/**
+ * Implementation notes: device_is_reachable
+ * -----------------------------------------
+ * This function implements the 'device_is_reachable' function.
+ */
+
+bool device_is_reachable(char *hostname) {
+  size_t len = 256;
+  char command[len];
+  snprintf(command, len, "ping -c 1 %s > /dev/null 2>&1", hostname);
+  if (system(command) == 0) {
+  	return true;
+  }
+  return false;
+}
+
+
 
 /**
  * Implementation notes: search_pattern_in_string
  * ----------------------------------------------
  * Searches for a pattern in a string and returns the position of the first
  * occurrence.
- * @param source_string The string to search in.
- * @param search_pattern The pattern to search for.
- * @return The position of the first occurrence of search_pattern in source_string,
  * ERROR_PATTERN_NOT_FOUND if the pattern was not found, or ERROR_NULL_POINTER if
  * either of the input pointers is NULL.
  */
