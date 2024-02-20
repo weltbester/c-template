@@ -31,19 +31,6 @@
  */
 bool device_is_reachable(char *hostname);
 
-int main(int argc, char *argv[]) {
-  if (argc != 2) {
-    printf("Usage: %s <hostname>\n", argv[0]);
-    return 1;
-  }
-  if (!device_is_reachable(argv[1])) {
-    printf("Gerät nicht erreichbar! Richtiger Hostname?\n")
-    return EXIT_FAILURE;
-  }
-  
-  return 0;
-}
-
 /**
   * Copyright: Februar 2024, Georg Pohl, 70174 Stuttgart
   *
