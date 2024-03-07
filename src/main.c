@@ -25,28 +25,7 @@
 #include <stdlib.h>
 #include "ganylib.h"
 
-/* DEFINES(CONSTANT MACROS, FUNCTION MACROS) */
-
-/* TYPEDEFS, ENUMS, STRUCTS */
-
-/* GLOBAL / EXTERNAL VARIABLES */
-extern int something[11];       /* Size must be declared, except you have a
-                                   null-terminated character array */ 
-
-non-static something_else;
-
-static another_something;
-
-/* CONSTANTS */
-const double PI = 3.1415926;
- 
-/* PROTOTYPES / FUNCTIONS */
-void my_function(void);
-
-/* Always use Prototypes and the 'void' keyword */
-/* Put like functions together or apply alphabetical order */
-
-int main() {
+int main(void) {
 
     return EXIT_SUCCESS;
 }
