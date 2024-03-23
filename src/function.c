@@ -20,7 +20,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "funktionsfile.h"
+#include "function.h"
 
 /* CONSTANTS */
 
@@ -34,4 +34,4 @@
 
 void greeting(void) {
   printf("Hello World!\n");
-} /* End of funktionsfile.c */
+} /* End of function.c */
