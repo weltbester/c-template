@@ -10,7 +10,6 @@
  *  Version: 1.04
  * 
  *  Last change: 22-02-2024
- *
  *  -------------------------------------
  *  Here you can describe in detail how
  *  the implementation is done, what are
@@ -19,7 +18,6 @@
  *
  *  Copyright (C) 2024: Georg Pohl, 70174 Stuttgart
  */
-
 
 #include <stdio.h>
 #include <stdlib.h>
