@@ -28,13 +28,13 @@
  *  Copyright (C) 2024: Georg Pohl, 70174 Stuttgart
  */
 
-#ifndef FUNKTIONSFILE_H
-#define FUNKTIONSFILE_H
+#ifndef FUNCTION_H
+#define FUNCTION_H
 
 /* If needed */
 #include <stdio.h>
 
 void greeting(void);
 
-#endif /* FUNKTIONSFILE_H */
-/* End of funktionsfile.h */
+#endif /* FUNCTION_H */
+/* End of function.h */
