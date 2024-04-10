@@ -302,7 +302,7 @@ void delete_entries_from_file(char *fn) {
   char **entries_to_erase = NULL;
   int i, n;
   
-  // Set entries counter to zero and take input from user
+  /* Write hostnames into an array */
   n = 0;
   printf("\nEnter entries line by line:\n"
          "Input 'q' and ENTER, when finished:\n");
@@ -310,6 +310,7 @@ void delete_entries_from_file(char *fn) {
   printf("-> ");
   scanf("%s", entry);
   while (strcmp(entry, "q") != 0) {
+    /* Allocate memory for erase list  */
     if (entries_to_erase == NULL) {
       entries_to_erase = malloc(sizeof(char *));
       if (entries_to_erase == NULL) {
@@ -323,21 +324,25 @@ void delete_entries_from_file(char *fn) {
         exit(EXIT_FAILURE);
       }
     }
+    
+    /* Allocate memory for hostname string in 'erase' array */
     int len = strlen(entry);
     entries_to_erase[n] = malloc((len + 1) * sizeof(char));
     if (entries_to_erase[n] == NULL) {
       fprintf(stderr, "realloc: not enough new memory for 'entries_to_erase'");
       exit(EXIT_FAILURE);
     }
+
+    /* Write to be deleted hostnames into array */
     make_string_uprcase(entry);
-    strncpy(entries_to_erase[n], entry, len);
+    strncpy(entries_to_erase[n], entry, len + 1);
     n++;
     printf("-> ");
     scanf("%s", entry);
   }
   printf("\n");
 
-  // Read original file and write to be deleted entries to temporary file
+  // Read original file and write entries to temporary file
   char *path_tmpfile = dirname(dirc);
   strcat(path_tmpfile, "/tmp_file.txt");
   read = fopen(fn, "r");
@@ -346,26 +351,46 @@ void delete_entries_from_file(char *fn) {
     fprintf(stderr, "fopen: can't open file\n");
     exit(EXIT_FAILURE);
   }
+  
   // Compare entries from file with entries to delete
-  while ((fgets(entry, MAX, read)) != NULL) {
     int found = 0;
+    while ((fgets(entry, MAX, read)) != NULL) {
     killNL(entry);
+    /* Check if file entry is in array of to be deleted terms */
     for (i = 0; i < n; ++i) {
       if ((strcmp(entry, entries_to_erase[i]) == 0)) {
-        found = 1;
+	found = 1;
         break;
       }
     }
+    /* Write entry to temp file */
     if (found == 1) {
       printf("Deleted %s\n", entries_to_erase[i]);
+      strcpy(entries_to_erase[i], "-");
+      found = 0;
       continue;
     }
     fprintf(write, "%s\n", entry);
   }
 
+    /* Print routers that were entered but not in the hostlist */
+  int not_found = 0;
+  for (int i = 0; i < n; ++i) {
+    if (strcmp(entries_to_erase[i], "-") != 0) {
+      not_found++;
+      not_found == 1 ? printf("%s", entries_to_erase[i]) : printf(", %s", entries_to_erase[i]);
+    }
+  }
+  if (not_found) {
+    printf(" not in hostlist!\n");
+  }
+
+  /* Free memory for array entries */
   for (int j = 0; j < n; ++j) {
     free(entries_to_erase[j]);
   }
+
+  /* Free memory for array char pointers */
   free(entries_to_erase);
   
   fclose(read);
