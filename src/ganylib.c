@@ -90,9 +90,18 @@ void counting_sort(int *array, int size) {
   }
 
   // Free allocated memory
-  free(counts);
-  free(starting_indices);
-  free(sorted);
+  if (counts) {
+    free(counts);
+    counts = NULL;
+  }
+  if (starting_indices) {
+    free(starting_indices);
+    starting_indices = NULL;
+  }
+  if (sorted) {
+    free(sorted);
+    sorted = NULL;
+  }
 }
 
 /**
