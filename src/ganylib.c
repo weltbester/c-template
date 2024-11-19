@@ -7,9 +7,9 @@
  * 
  *  Date of creation: 18-02-2021
  * 
- *  Version: 1.0
+ *  Version: 1.1
  * 
- *  Last change: 13-04-2021
+ *  Last change: 19-11-2024
  *
  *  -------------------------------------
  *  Here is the implementation of ganylib.h
@@ -26,6 +26,74 @@
 #include <ctype.h>
 #include <libgen.h>
 #include "ganylib.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+ * Implementation notes: counting_sort
+ * -----------------------------------
+ * This function implements the 'counting_sort' function.
+ */
+
+void counting_sort(int *array, int size) {
+  // Find the maximum value in the array
+  int max = array[0];
+  for (int i = 0; i < size; ++i) {
+    if (array[i] > max) {
+      max = array[i];
+    }
+  }
+
+  // Allocate memory for counts and starting_indices arrays
+  int *counts = (int *)malloc((max + 1) * sizeof(int));
+  int *starting_indices = (int *)malloc((max + 1) * sizeof(int));
+  if (counts == NULL || starting_indices == NULL) {
+    fprintf(stderr, "Memory allocation failed\n");
+    exit(EXIT_FAILURE);
+  }
+
+  // Initialize counts and starting_indices arrays
+  for (int i = 0; i < max + 1; ++i) {
+    counts[i] = 0;
+    starting_indices[i] = 0;
+  }
+
+  // Count the occurrences of each integer in the input array
+  for (int i = 0; i < size; ++i) {
+    counts[array[i]]++;
+  }
+
+  // Compute the starting indices for each integer
+  for (int i = 0; i < max; ++i) {
+    starting_indices[i + 1] = starting_indices[i] + counts[i];
+  }
+
+  // Allocate memory for the sorted array
+  int *sorted = (int *)malloc(size * sizeof(int));
+  if (sorted == NULL) {
+    fprintf(stderr, "Memory allocation failed\n");
+    free(counts);
+    free(starting_indices);
+    exit(EXIT_FAILURE);
+  }
+
+  // Construct the sorted array
+  for (int i = 0; i < size; ++i) {
+    sorted[starting_indices[array[i]]] = array[i];
+    starting_indices[array[i]]++;
+  }
+
+  // Copy the sorted array back to the input array
+  for (int i = 0; i < size; ++i) {
+    array[i] = sorted[i];
+  }
+
+  // Free allocated memory
+  free(counts);
+  free(starting_indices);
+  free(sorted);
+}
 
 /**
  * Implementation notes: device_is_reachable
@@ -302,7 +370,7 @@ void delete_entries_from_file(char *fn) {
   char **entries_to_erase = NULL;
   int i, n;
   
-  /* Write hostnames into an array */
+  // Set entries counter to zero and take input from user
   n = 0;
   printf("\nEnter entries line by line:\n"
          "Input 'q' and ENTER, when finished:\n");
@@ -310,7 +378,6 @@ void delete_entries_from_file(char *fn) {
   printf("-> ");
   scanf("%s", entry);
   while (strcmp(entry, "q") != 0) {
-    /* Allocate memory for erase list  */
     if (entries_to_erase == NULL) {
       entries_to_erase = malloc(sizeof(char *));
       if (entries_to_erase == NULL) {
@@ -324,25 +391,21 @@ void delete_entries_from_file(char *fn) {
         exit(EXIT_FAILURE);
       }
     }
-    
-    /* Allocate memory for hostname string in 'erase' array */
     int len = strlen(entry);
     entries_to_erase[n] = malloc((len + 1) * sizeof(char));
     if (entries_to_erase[n] == NULL) {
       fprintf(stderr, "realloc: not enough new memory for 'entries_to_erase'");
       exit(EXIT_FAILURE);
     }
-
-    /* Write to be deleted hostnames into array */
     make_string_uprcase(entry);
-    strncpy(entries_to_erase[n], entry, len + 1);
+    strncpy(entries_to_erase[n], entry, len);
     n++;
     printf("-> ");
     scanf("%s", entry);
   }
   printf("\n");
 
-  // Read original file and write entries to temporary file
+  // Read original file and write to be deleted entries to temporary file
   char *path_tmpfile = dirname(dirc);
   strcat(path_tmpfile, "/tmp_file.txt");
   read = fopen(fn, "r");
@@ -351,46 +414,26 @@ void delete_entries_from_file(char *fn) {
     fprintf(stderr, "fopen: can't open file\n");
     exit(EXIT_FAILURE);
   }
-  
   // Compare entries from file with entries to delete
+  while ((fgets(entry, MAX, read)) != NULL) {
     int found = 0;
-    while ((fgets(entry, MAX, read)) != NULL) {
     killNL(entry);
-    /* Check if file entry is in array of to be deleted terms */
     for (i = 0; i < n; ++i) {
       if ((strcmp(entry, entries_to_erase[i]) == 0)) {
-	found = 1;
+        found = 1;
         break;
       }
     }
-    /* Write entry to temp file */
     if (found == 1) {
       printf("Deleted %s\n", entries_to_erase[i]);
-      strcpy(entries_to_erase[i], "-");
-      found = 0;
       continue;
     }
     fprintf(write, "%s\n", entry);
   }
 
-    /* Print routers that were entered but not in the hostlist */
-  int not_found = 0;
-  for (int i = 0; i < n; ++i) {
-    if (strcmp(entries_to_erase[i], "-") != 0) {
-      not_found++;
-      not_found == 1 ? printf("%s", entries_to_erase[i]) : printf(", %s", entries_to_erase[i]);
-    }
-  }
-  if (not_found) {
-    printf(" not in hostlist!\n");
-  }
-
-  /* Free memory for array entries */
   for (int j = 0; j < n; ++j) {
     free(entries_to_erase[j]);
   }
-
-  /* Free memory for array char pointers */
   free(entries_to_erase);
   
   fclose(read);
