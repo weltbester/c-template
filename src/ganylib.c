@@ -7,7 +7,7 @@
  * 
  *  Date of creation: 18-02-2021
  * 
- *  Version: 1.13
+ *  Version: 1.14
  * 
  *  Last change: 19-11-2024
  *
