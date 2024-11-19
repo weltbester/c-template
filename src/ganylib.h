@@ -21,12 +21,13 @@
  *
  * @brief Sorts an array of integers using the counting sort algorithm.
  *
- * This function sorts an array of integers in non-decreasing order using
- * the counting sort algorithm. It first finds the maximum value in the array
- * to determine the range of the counts array. It then counts the occurrences
- * of each integer in the input array and uses these counts to determine the
- * starting indices of each integer in the sorted array. Finally, it constructs
- * the sorted array and copies it back to the input array.
+ * @details This function sorts an array of integers in non-decreasing
+ * order using the counting sort algorithm. It first finds the maximum
+ * value in the array to determine the range of the counts array. It
+ * then counts the occurrences of each integer in the input array and
+ * uses these counts to determine the starting indices of each integer
+ * in the sorted array. Finally, it constructs the sorted array and
+ * copies it back to the input array.
  *
  * @param array Pointer to the array of integers to be sorted.
  * @param size The number of elements in the array.
