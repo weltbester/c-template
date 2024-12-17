@@ -1,4 +1,3 @@
-# Title [![Build Status][ci-image]][ci] [![Code Climate][grade-image]][grade] [![Gem Version][version-image]][version]
 Template for C programs with Makefile, Header- and Implementation files.
 
 # Documentation
