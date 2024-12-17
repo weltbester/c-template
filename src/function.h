@@ -1,4 +1,4 @@
-/** @file funktionsfile.h
+/** @file function.h
  *  @brief Short, generic description about the function
  *
  *  @author Georg Pohl
@@ -25,16 +25,16 @@
  *  the corner cases and what problems
  *  can arise due to wrong usage (side-effects).
  *
- *  Copyright (C) Jan. 2021: Georg Pohl, 70174 Stuttgart
+ *  Copyright (C) 2024: Georg Pohl, 70174 Stuttgart
  */
 
-#ifndef FUNKTIONSFILE_H
-#define FUNKTIONSFILE_H
+#ifndef FUNCTION_H
+#define FUNCTION_H
 
 /* If needed */
 #include <stdio.h>
 
 void greeting(void);
 
-#endif /* FUNKTIONSFILE_H */
-/* End of funktionsfile.h */
+#endif /* FUNCTION_H */
+/* End of function.h */

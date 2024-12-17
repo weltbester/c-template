@@ -1,4 +1,4 @@
-/** @file funktionsfile.c
+/** @file function.c
  *  @brief Short, generic description about the function
  *
  *  @author Georg Pohl
@@ -15,12 +15,12 @@
  *  Detailed description about the
  *  implementation, not about the usage.
  *
- *  Copyright (C) Jan. 2021: Georg Pohl, 70174 Stuttgart
+ *  Copyright (C) 2024: Georg Pohl, 70174 Stuttgart
  */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "funktionsfile.h"
+#include "function.h"
 
 /* CONSTANTS */
 
@@ -34,4 +34,4 @@
 
 void greeting(void) {
   printf("Hello World!\n");
-} /* End of funktionsfile.c */
+} /* End of function.c */
