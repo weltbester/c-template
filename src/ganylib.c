@@ -7,9 +7,9 @@
  * 
  *  Date of creation: 18-02-2021
  * 
- *  Version: 1.19
+ *  Version: 1.1
  * 
- *  Last change: 19-11-2024
+ *  Last change: 28-03-2025
  *
  *  -------------------------------------
  *  Here is the implementation of ganylib.h
@@ -19,16 +19,16 @@
  */
 
 #define _GNU_SOURCE     /* for getline(), Non-ANSI */
+#define BUFFER_SIZE 1024
 
+#include <ctype.h>
+#include <libgen.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <libgen.h>
-#include "ganylib.h"
+#include <regex.h>
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "ganylib.h"
 
 /**
  * Implementation notes: get_date_time
@@ -61,6 +61,131 @@ char *get_date_time(bool both) {
              tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
   }
   return date_str;
+}
+
+/**
+ * Implementation notes: find_hostname_entry
+ * -----------------------------------------
+ * This function implements the 'device_is_reachable' function.
+ */
+
+char *find_hostname_entry(char *hostname) {
+    char command[BUFFER_SIZE];
+    char *buffer = malloc(BUFFER_SIZE);
+    FILE *fp;
+    regex_t regex;
+    int reti;
+    
+    if (buffer == NULL) {
+        fprintf(stderr, "Memory allocation error!\n");
+        return NULL;
+    }
+
+    // Construct the system command
+    snprintf(command, sizeof(command)-1, "sr %s", hostname);
+
+    // Execute the command and open the pipe
+    fp = popen(command, "r");
+    if (fp == NULL) {
+        perror("popen");
+        free(buffer);
+        return NULL;
+    }
+
+    // Construct the regular expression pattern
+    char pattern[BUFFER_SIZE];
+    snprintf(pattern, sizeof(pattern), "^%s", hostname);
+    
+    // Compile the regular expression
+    reti = regcomp(&regex, pattern, REG_EXTENDED | REG_ICASE);
+    if (reti) {
+      fprintf(stderr, "Could not compile regex!\n");
+      free(buffer);
+      pclose(fp);
+      return NULL;
+    }
+    
+    // Read the output line by line
+    while (fgets(buffer, BUFFER_SIZE, fp) != NULL) {
+      // Check if the line matches the regex
+      reti = regexec(&regex, buffer, 0, NULL, 0);
+      if (!reti) {
+        regfree(&regex);
+        pclose(fp);
+        return buffer;
+      }
+    }
+    
+    // Close the pipe, if still open
+    if (fp != NULL) { 
+      pclose(fp);
+    }
+    regfree(&regex);
+    free(buffer);
+    return NULL;
+}
+
+/**
+ * Implementation notes: is_cisco_router
+ * -------------------------------------
+ * This function implements the 'is_cisco_router' function.
+ */
+
+bool is_cisco_router(char *hostname) {
+  char *info_string = find_hostname_entry(hostname);
+
+  if (strstr(info_string, "cisco") != NULL) {
+    free(info_string);
+    return true;
+  }
+
+  if (info_string) {
+    free(info_string);
+  }
+  
+  return false;
+}
+
+/**
+ * Implementation notes: is_9001
+ * -----------------------------------------
+ * This function implements the 'is_9001' function.
+ */
+
+bool is_9001(char *hostname) {
+  char *info_string = find_hostname_entry(hostname);
+
+  if (strstr(info_string, "ASR9001") != NULL) {
+    free(info_string);
+    return true;
+  }
+
+  if (info_string) {
+    free(info_string);
+  }
+  
+  return false;
+}
+
+/**
+ * Implementation notes: is_asr9k
+ * -----------------------------------------
+ * This function implements the 'is_asr9k' function.
+ */
+
+bool is_asr9k(char *hostname) {
+  char *info_string = find_hostname_entry(hostname);
+
+  if (strstr(info_string, "ASR") != NULL) {
+    free(info_string);
+    return true;
+  }
+
+  if (info_string) {
+    free(info_string);
+  }
+  
+  return false;
 }
 
 /**
@@ -148,7 +273,7 @@ bool device_is_reachable(char *hostname) {
   char command[len];
   snprintf(command, len, "ping -c 1 %s > /dev/null 2>&1", hostname);
   if (system(command) == 0) {
-  	return true;
+    return true;
   }
   return false;
 }
