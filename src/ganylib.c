@@ -31,6 +31,39 @@
 #include <stdlib.h>
 
 /**
+ * Implementation notes: get_date_time
+ * -----------------------------------
+ * This function implements the 'get_date_time' function.
+ */
+char *get_date_time(bool both) {
+  char *result = NULL;
+  char *date_str = NULL; // YYYY-MM-DD_HH-MM-SS format
+  int size = 20;
+  time_t t = time(NULL);
+  struct tm tm = *localtime(&t);
+  
+  if (!both) {
+    size = 11;
+  }
+  
+  date_str = (char *) malloc(size * sizeof(char));
+  if (date_str == NULL) {
+    fprintf(stderr, "malloc: Not enough memory!\n");
+    return date_str;
+  }
+
+  if (both) {
+    snprintf(date_str, size, "%04d-%02d-%02d_%02d-%02d-%02d", 
+             tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, 
+             tm.tm_hour, tm.tm_min, tm.tm_sec);
+  } else {
+    snprintf(date_str, size, "%04d-%02d-%02d", 
+             tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+  }
+  return date_str;
+}
+
+/**
  * Implementation notes: counting_sort
  * -----------------------------------
  * This function implements the 'counting_sort' function.
@@ -119,8 +152,6 @@ bool device_is_reachable(char *hostname) {
   }
   return false;
 }
-
-
 
 /**
  * Implementation notes: search_pattern_in_string
