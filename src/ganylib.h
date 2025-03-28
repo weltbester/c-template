@@ -33,22 +33,61 @@
 char *get_date_time(bool both);
 
 /**
- * Copyright: November 2024, Georg Pohl, 70174 Stuttgart
+ * Copyright: Februar 2025, Georg Pohl, 70174 Stuttgart
  *
- * @brief Sorts an array of integers using the counting sort algorithm.
- *
- * @details This function sorts an array of integers in non-decreasing
- * order using the counting sort algorithm. It first finds the maximum
- * value in the array to determine the range of the counts array. It
- * then counts the occurrences of each integer in the input array and
- * uses these counts to determine the starting indices of each integer
- * in the sorted array. Finally, it constructs the sorted array and
- * copies it back to the input array.
- *
- * @param array Pointer to the array of integers to be sorted.
- * @param size The number of elements in the array.
+ * Function: find_hostname_entry
+ * Usage: find_hostname_entry(char *hostname)
+ * ------------------------------------------
+ * @brief Returns a info string for a specific hostname
+ * @param char *hostname
+ * @return *char
+ * @details Makes a 'sr <hostname>' request and returns
+ * the info string for this router for further processing.
+ * Returns NULL if no entry is found.
  */
-void counting_sort(int *array, int size);
+char *find_hostname_entry(char *hostname);
+
+/**
+ * Copyright: Februar 2025, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: is_cisco_router
+ * Usage: is_cisco_router(char *hostname)
+ * --------------------------------------
+ * @brief Checks if a device is a cisco router
+ * @param char *hostname
+ * @return bool
+ * @details It returns true if it's a cisco device,
+ * otherwise false.
+ */
+bool is_cisco_router(char *hostname);
+
+/**
+ * Copyright: Februar 2025, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: is_asr9k
+ * Usage: is_asr9k(char *hostname)
+ * -------------------------------
+ * @brief Checks if a chassis is an ASR9K
+ * @param char *hostname
+ * @return bool
+ * @details It returns true if it's an ASR9K,
+ * otherwise false (means it's a C8000 chassis).
+ */
+bool is_asr9k(char *hostname);
+
+/**
+ * Copyright: March 2025, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: is_9001
+ * Usage: is_9001(char *hostname)
+ * -------------------------------
+ * @brief Checks if a chassis is an ASR9001
+ * @param char *hostname
+ * @return bool
+ * @details It returns true if it's an ASR9001
+ * device, otherwise false.
+ */
+bool is_9001(char *hostname);
 
 /**
  * Copyright: Februar 2024, Georg Pohl, 70174 Stuttgart
@@ -79,6 +118,24 @@ bool device_is_reachable(char *hostname);
   */
 
 int extract_router_uptime(char* line);
+
+/**
+ * Copyright: November 2024, Georg Pohl, 70174 Stuttgart
+ *
+ * @brief Sorts an array of integers using the counting sort algorithm.
+ *
+ * @details This function sorts an array of integers in non-decreasing
+ * order using the counting sort algorithm. It first finds the maximum
+ * value in the array to determine the range of the counts array. It
+ * then counts the occurrences of each integer in the input array and
+ * uses these counts to determine the starting indices of each integer
+ * in the sorted array. Finally, it constructs the sorted array and
+ * copies it back to the input array.
+ *
+ * @param array Pointer to the array of integers to be sorted.
+ * @param size The number of elements in the array.
+ */
+void counting_sort(int *array, int size);
 
 /**
  * Copyright: November 2023, Georg Pohl, 70174 Stuttgart
