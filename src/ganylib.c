@@ -35,7 +35,7 @@
  * -----------------------------------
  * This function implements the 'get_date_time' function.
  */
-char *get_date_time(bool both) {
+char *get_date_time(bool both = true) {
   char *result = NULL;
   char *date_str = NULL; // YYYY-MM-DD_HH-MM-SS format
   int size = 20;
