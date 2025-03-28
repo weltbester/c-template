@@ -17,6 +17,22 @@
 #include <stdbool.h>
 
 /**
+ * Copyright: March 2025, Georg Pohl, 70174 Stuttgart
+ *
+ * Function: char *get_date_time
+ * Usage: char *get_date_time(both)
+ * --------------------------------
+ * @brief Returns both date and time or date only
+ * @param bool both
+ * @return char*
+ * @details If 'both' is true, the function returns
+ * a date and time string in the format
+ * YYYY-MM-DD_HH-MM-SS, otherwise only the date
+ * YYYY-MM-DD.
+ */
+char *get_date_time(bool both);
+
+/**
  * Copyright: November 2024, Georg Pohl, 70174 Stuttgart
  *
  * @brief Sorts an array of integers using the counting sort algorithm.
