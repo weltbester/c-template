@@ -20,7 +20,7 @@
  * Copyright: March 2025, Georg Pohl, 70174 Stuttgart
  *
  * Function: char *get_date_time
- * Usage: char *get_date_time(both)
+ * Usage: char *get_date_time(bool)
  * --------------------------------
  * @brief Returns both date and time or date only
  * @param bool both
