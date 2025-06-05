@@ -9,7 +9,7 @@
  * 
  *  Version: 1.1
  * 
- *  Last change: 28-03-2025
+ *  Last change: 05-06-2025
  *
  *  -------------------------------------
  *  Here is the implementation of ganylib.h
@@ -30,30 +30,54 @@
 
 #include "ganylib.h"
 
-char *get_date_time(bool both) {
-    char *date_str = NULL; // YYYY-MM-DD_HH-MM-SS format
-    int size = both ? 20 : 11; // Include space for null terminator
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
+/**
+ * Implementation notes: get_date_time
+ * -----------------------------------
+ * This function implements the 'get_date_time' function.
+ */
+char *get_date_time(bool both_formats) {
+  // Allocate memory for the date_str
+  int size = both_formats ? 24 : 11; // Allocate space for long or short version and null terminator  
+  char *date_str = (char *) malloc(size * sizeof(char));
+  if (date_str == NULL) {
+    fprintf(stderr, "malloc: Not enough memory!\n");
+    return NULL;
+  }  
 
-    // Allocate memory for the date string
-    date_str = (char *)malloc(size * sizeof(char));
-    if (date_str == NULL) {
-        fprintf(stderr, "malloc: Not enough memory!\n");
-        return NULL; // Return NULL on allocation failure
-    }
+  // Get the current time with milliseconds
+  struct timeval tv;
+  if (gettimeofday(&tv, NULL) != 0) {
+    fprintf(stderr, "Error: Failed to allocate memory for timestamp\n");
+    free(date_str);
+    return NULL;
+  }
 
-    // Format the date string based on the 'both' flag
-    if (both) {
-        snprintf(date_str, size, "%04d-%02d-%02d_%02d-%02d-%02d",
-                 tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
-                 tm.tm_hour, tm.tm_min, tm.tm_sec);
-    } else {
-        snprintf(date_str, size, "%04d-%02d-%02d",
-                 tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
-    }
+  // Convert seconds to localtime
+  struct tm *localTime = localtime(&tv.tv_sec);
+  if (!localTime) {
+    fprintf(stderr, "Error: Failed to convert time to local time\n");
+    free(date_str);
+    return NULL;
+  }
 
-    return date_str;
+  // Format the 'date_str' with milliseconds
+  int written = 0;
+  if (both_formats) {
+    written = snprintf(date_str, size, "%04d-%02d-%02d_%02d-%02d-%02d-%03ld",
+		       localTime->tm_year + 1900, localTime->tm_mon + 1, localTime->tm_mday,
+		       localTime->tm_hour, localTime->tm_min, localTime->tm_sec,
+		       tv.tv_usec / 1000); // Convert microseconds to milliseconds
+  } else {
+    snprintf(date_str, size, "%04d-%02d-%02d",
+	     localTime->tm_year + 1900, localTime->tm_mon + 1, localTime->tm_mday);
+  }
+
+  if (written < 0 || written >= 40) {
+    fprintf(stderr, "Error: Failed to format timestamp\n");
+    free(date_str);
+    return NULL;
+  }
+  return date_str;
 }
 
 /**
