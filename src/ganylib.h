@@ -17,20 +17,22 @@
 #include <stdbool.h>
 
 /**
- * Copyright: March 2025, Georg Pohl, 70174 Stuttgart
+ * Copyright: June 2025, Georg Pohl, 70174 Stuttgart
  *
- * Function: char *get_date_time
- * Usage: char *get_date_time(bool)
- * --------------------------------
- * @brief Returns both date and time or date only
- * @param bool both
+ * Function: get_date_time
+ * Usage: char *get_date_time(bool both_formats)
+ * ---------------------------------------------
+ * @brief Returns date and time or date only
+ * @param bool both_formats
  * @return char*
  * @details If 'both' is true, the function returns
- * a date and time string in the format
- * YYYY-MM-DD_HH-MM-SS, otherwise only the date
- * YYYY-MM-DD.
+ * a date and a very precise time string in the
+ * format YYYY-MM-DD_HH-MM-SS-mm, otherwise only
+ * the date YYYY-MM-DD. The precise timestamp is
+ * usefull, when you want to save files under the
+ * same name.
  */
-char *get_date_time(bool both);
+char *get_date_time(bool both_formats);
 
 /**
  * Copyright: Februar 2025, Georg Pohl, 70174 Stuttgart
